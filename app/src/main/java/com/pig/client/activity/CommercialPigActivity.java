@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 
 import com.pig.client.R;
 import com.pig.client.adapter.BoarAdapter;
+import com.pig.client.adapter.CommericalPigAdapter;
 import com.pig.client.view.TitleBar;
 
 public class CommercialPigActivity extends AppCompatActivity {
@@ -26,7 +27,7 @@ private RecyclerView commercialPigRV = null;
         commercialPigRV = findViewById(R.id.commercialPigRV);
         LinearLayoutManager layoutManager  = new LinearLayoutManager(CommercialPigActivity.this);
         commercialPigRV.setLayoutManager(layoutManager);
-        commercialPigRV.setAdapter(new BoarAdapter(CommercialPigActivity.this));
+        commercialPigRV.setAdapter(new CommericalPigAdapter(CommercialPigActivity.this));
         commercialPigRV.addItemDecoration(new DividerItemDecoration(CommercialPigActivity.this,DividerItemDecoration.VERTICAL));
 
     }
