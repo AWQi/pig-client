@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+
+    商品猪 类型
+-->
+
 <infos>
     <info id="1">哺乳仔猪</info>
     <info id="2">保育仔猪</info>

@@ -6,48 +6,62 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pig.client.R;
 
 public class BoarAdapter extends RecyclerView.Adapter {
 
+    private Context context;
+    public BoarAdapter(Context context) {
+        this.context = context;
+    }
 
-        private int[] cardImages = {R.drawable.a,R.drawable.b,R.drawable.c,R.drawable.d};
-        private String[] cardTexts ={"种猪管理","商品猪管理","生产管理","存栏信息"};
-        private Context context;
-
-
-        @NonNull
+    @NonNull
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-          View boarItem = LayoutInflater.from(context).inflate(R.layout.boar_item,null);
+          View boarItem = LayoutInflater.from(context).inflate(R.layout.boar_item,viewGroup,false);
          BoarHolder holder = new BoarHolder(boarItem);
             return holder;
         }
 
-        @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-            com.pig.client.adapter.MainCardRVAdapter.CardHolder holder = (com.pig.client.adapter.MainCardRVAdapter.CardHolder) viewHolder;
-            holder.cardImage.setImageResource(cardImages[i]);
-            holder.cardText.setText(cardTexts[i]);
-        }
+
 
         @Override
+        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+            BoarHolder holder = (BoarHolder) viewHolder;
+            holder.earlabelTV.setText("asa");
+            holder.typeTV.setText("asa");
+            holder.pigstyTV.setText("asa");
+            holder.birthdayTV.setText("asa");
+            holder.varietyTV.setText("asa");
+            holder.stateTV.setText("asa");
+            holder.entergroupdayTV.setText("asa");
+        }
+        @Override
         public int getItemCount() {
-            return cardImages.length;
+            return 5;
         }
         class  BoarHolder extends RecyclerView.ViewHolder{
             public View view = null;
-            public ImageView cardImage = null;
-            public TextView cardText = null;
+            public TextView earlabelTV = null;
+            public TextView typeTV = null;
+            public TextView pigstyTV = null;
+            public TextView birthdayTV = null;
+            public TextView varietyTV = null;
+            public TextView stateTV = null;
+            public TextView entergroupdayTV = null;
 
             public BoarHolder(@NonNull View itemView) {
                 super(itemView);
                 this.view = itemView;
-                cardImage = itemView.findViewById(R.id.cardImage);
-                cardText = itemView.findViewById(R.id.cardText);
+                earlabelTV = itemView.findViewById(R.id.earlabelTV);
+                typeTV = itemView.findViewById(R.id.typeTV);
+                pigstyTV = itemView.findViewById(R.id.pigstyTV);
+                birthdayTV = itemView.findViewById(R.id.birthdayTV);
+                varietyTV = itemView.findViewById(R.id.varietyTV);
+                stateTV = itemView.findViewById(R.id.stateTV);
+                entergroupdayTV = itemView.findViewById(R.id.entergroupdayTV);
             }
         }
     }

@@ -1,28 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:background="@drawable/flowborder"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_margin="10dp"
-        android:orientation="vertical"
-        android:padding="10dp"
-        android:background="@drawable/flowborder"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        >
         <LinearLayout
+            android:layout_weight="1"
+            android:layout_gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
+            android:layout_height="wrap_content">
             <TextView
-                android:text="种猪耳牌号: "
+                android:text="批次号: "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
-                android:id="@+id/earlabelTV"
+                android:id="@+id/batchTV"
                 android:text="0001"
+                android:textColor="#1E90FF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+
         </LinearLayout>
 
+        <Button
+            android:text="结束批次"
+            android:layout_weight="3"
+            android:background="@drawable/btnborder"
+            android:textSize="10sp"
+            android:padding="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:background="#1E90FF"
+        android:layout_height="1dp" />
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -33,14 +53,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-            android:text="猪只类型: "
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+
+                android:text="存栏头数: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
             <TextView
-            android:id="@+id/typeTV"
-            android:text="后备母猪"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+                android:id="@+id/numberTV"
+                android:text="10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
         <LinearLayout
@@ -49,14 +70,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-            android:text="存栏位置: "
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+                android:text="猪只类型: "
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
             <TextView
-            android:id="@+id/pigstyTV"
-            android:text="猪圈一栏"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+                android:id="@+id/typeTV"
+                android:text="保育仔猪"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </LinearLayout>
 
@@ -70,12 +91,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:text="出生日期: "
+                android:text="存栏位置: "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
-                android:id="@+id/birthdayTV"
-                android:text="2018-02-01"
+                android:id="@+id/pigstyTV"
+                android:text="猪圈四栋"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -89,10 +110,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="品         种: " />
+                android:text="业务日期: " />
             <TextView
-                android:id="@+id/varietyTV"
-                android:text="大白"
+                android:id="@+id/businessDateTV"
+                android:text="2018-02-12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -110,54 +131,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
-                android:text="当前状态: "
+                android:text="日         龄: "
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
-                android:id="@+id/stateTV"
-                android:text="后备2天"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="在场状态: "
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:text="在场"
+                android:id="@+id/ageTV"
+                android:text="126"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
-    </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:text="入群时间: "
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/entergroupdayTV"
-                android:text="2018-05-12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
 
-        </LinearLayout>
+
 
     </LinearLayout>
 
-    </LinearLayout>
+</LinearLayout>
 

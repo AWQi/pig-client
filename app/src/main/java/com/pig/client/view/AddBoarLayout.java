@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.pig.client.R;
 import com.pig.client.activity.BoarAddActivity;
+import com.pig.client.util.XMLUtil;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -62,6 +63,7 @@ public class AddBoarLayout extends LinearLayout implements View.OnClickListener{
 
         earlabelET = findViewById(R.id.earlabelET);
         pigstySpinner = findViewById(R.id.pigstySpinner);
+//        pigstyList = XMLUtil.analysisMapXml(context,"");
         pigstyList.add("123");
         pigstyList.add("142");
         pigstyList.add("784");

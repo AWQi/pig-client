@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:background="@drawable/bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
-    tools:context=".activity.BoarActivity">
+    tools:context=".activity.CommercialPigActivity">
 
     <com.pig.client.view.TitleBar
-        android:id="@+id/boarTitleBar"
+        android:id="@+id/commercialPigTitleBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
     </com.pig.client.view.TitleBar>
 
     <LinearLayout
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content">
         <SearchView
             android:background="@drawable/flowborder"
-            android:id="@+id/boarSearch"
+            android:id="@+id/commercialPigSearch"
             android:autofillHints="请输入关键字"
             android:layout_width="295dp"
             android:layout_height="40dp">
@@ -38,7 +38,7 @@
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/boarRV"
+        android:id="@+id/commercialPigRV"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
         android:layout_marginTop="20dp"
