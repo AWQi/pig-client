@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<infos>
+    <info id="1">哺乳仔猪</info>
+    <info id="2">保育仔猪</info>
+    <info id="3">育肥猪</info>
+    <info id="4">残次猪</info>
+    <info id="5">后备猪</info>
+</infos>
