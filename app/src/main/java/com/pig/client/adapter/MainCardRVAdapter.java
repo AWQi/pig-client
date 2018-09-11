@@ -1,6 +1,7 @@
 package com.pig.client.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pig.client.R;
+import com.pig.client.activity.BoarActivity;
 
 
 public class MainCardRVAdapter extends RecyclerView.Adapter{
@@ -29,10 +31,26 @@ public class MainCardRVAdapter extends RecyclerView.Adapter{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, final int i) {
         CardHolder holder = (CardHolder) viewHolder;
         holder.cardImage.setImageResource(cardImages[i]);
         holder.cardText.setText(cardTexts[i]);
+        holder.view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                switch (i){
+                    case  0:
+                        Intent t0 = new Intent(context, BoarActivity.class);
+                        context.startActivity(t0);
+                        break;
+                    case  1:break;
+                    case  2:break;
+                    case  3:break;
+                    default:break;
+                }
+            }
+        });
+
     }
 
     @Override

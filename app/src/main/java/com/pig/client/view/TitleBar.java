@@ -32,19 +32,19 @@ public class TitleBar extends LinearLayout{
             }
         });
     }
-    void setRetIV(int id){
+    public void setRetIV(int id){
         this.retIV.setImageResource(id);
     }
-    void  setMenuOnClick(OnClickListener listener){
+    public void  setMenuOnClick(OnClickListener listener){
         this.menuIV.setOnClickListener(listener);
     }
-    void  setTitle(String title){
+    public void  setTitle(String title){
         this.titleTV.setText(title);
     }
-    void  setMenuIV(int id){
+    public void  setMenuIV(int id){
         this.menuIV.setImageResource(id);
     }
-    void init(){
+    public void init(){
 
     }
 }

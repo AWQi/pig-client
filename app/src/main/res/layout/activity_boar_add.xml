@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="耳  牌  号:"
+            android:layout_weight="3"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/earlabelET"
+            android:layout_weight="2"
+            android:hint="请输入耳牌号"
+
+            android:layout_width="100dp"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_weight="3"
+            android:padding="5dp"
+            android:src="@drawable/qrcode"
+            android:layout_width="30dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <LinearLayout
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:orientation="horizontal"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="存栏位置: "
+            android:layout_width="100dp"
+            android:layout_height="wrap_content" />
+        <!--<TextView-->
+            <!--android:layout_weight="1"-->
+            <!--android:hint="请选择"-->
+            <!--android:gravity="right"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" />-->
+
+        <Spinner
+            android:id="@+id/pigstySpinner"
+            android:layout_gravity="right"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </Spinner>
+
+        <!--<ImageView-->
+            <!--android:layout_weight="2"-->
+            <!--android:src="@drawable/sel"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="20dp" />-->
+    </LinearLayout>
+    <LinearLayout
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:orientation="horizontal"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="品         种: "
+            android:layout_width="100dp"
+            android:layout_height="wrap_content" />
+        <!--<TextView-->
+            <!--android:layout_weight="1"-->
+            <!--android:hint="请选择"-->
+            <!--android:gravity="right"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" />-->
+
+        <Spinner
+            android:id="@+id/varietySpinner"
+            android:layout_gravity="right"
+            android:gravity="center_horizontal"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </Spinner>
+    </LinearLayout>
+    <LinearLayout
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:orientation="horizontal"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="猪只状态: "
+            android:layout_width="100dp"
+            android:layout_height="wrap_content" />
+        <!--<TextView-->
+            <!--android:layout_weight="1"-->
+            <!--android:hint="请选择"-->
+            <!--android:gravity="right"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content" />-->
+
+        <Spinner
+            android:id="@+id/stateSpinner"
+            android:gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </Spinner>
+    </LinearLayout>
+    <LinearLayout
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+    android:orientation="horizontal"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content">
+    <TextView
+        android:text="出生日期: "
+        android:layout_width="100dp"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/birthdayTV"
+        android:hint="2018-07-01"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/birthdayIV"
+        android:src="@drawable/calender"
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+</LinearLayout>
+    <LinearLayout
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+    android:orientation="horizontal"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content">
+    <TextView
+        android:text="入厂日期: "
+        android:layout_width="100dp"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/entergroupdayTV"
+        android:hint="2018-09-16"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/entergroupdayIV"
+        android:src="@drawable/calender"
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+</LinearLayout>
+
+    <!--<CalendarView-->
+        <!--android:id="@+id/calendar"-->
+        <!--android:visibility="gone"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content">-->
+
+    <!--</CalendarView>-->
+
+
+</LinearLayout>

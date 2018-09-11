@@ -7,24 +7,32 @@
     android:layout_height="match_parent"
     tools:context=".activity.BoarActivity">
 
-    <include layout="@layout/titlebar"
-    android:id="@+id/boarTitleBar"/>
+    <com.pig.client.view.TitleBar
+        android:id="@+id/boarTitleBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.pig.client.view.TitleBar>
+
 
     <LinearLayout
         android:orientation="horizontal"
         android:padding="10dp"
+        android:layout_gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <android.support.v7.widget.SearchView
+        <SearchView
+            android:id="@+id/boarSearch"
             android:autofillHints="请输入关键字"
             android:layout_width="300dp"
-            android:layout_height="match_parent">
+            android:layout_height="50dp">
 
-        </android.support.v7.widget.SearchView>
+        </SearchView>
         <ImageView
             android:src="@drawable/qrcode"
-            android:layout_width="60dp"
-            android:layout_height="50dp" />
+            android:layout_gravity="center_vertical"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
     </LinearLayout>
 
 
