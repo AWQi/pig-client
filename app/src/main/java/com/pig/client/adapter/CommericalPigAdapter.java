@@ -21,7 +21,7 @@ public class CommericalPigAdapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View boarItem = LayoutInflater.from(context).inflate(R.layout.boar_item,viewGroup,false);
+        View boarItem = LayoutInflater.from(context).inflate(R.layout.commercial_pig_item,viewGroup,false);
         CommericalPigHolder holder = new CommericalPigHolder(boarItem);
         return holder;
     }
