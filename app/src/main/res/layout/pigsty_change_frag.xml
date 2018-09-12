@@ -25,6 +25,37 @@
                 android:background="@drawable/flowborder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="转舍类别: "
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content" />
+                    <!--<TextView-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:hint="请选择"-->
+                    <!--android:gravity="right"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content" />-->
+
+                    <TextView
+                        android:id="@+id/changeTypeTV"
+                        android:layout_width="141dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:hint="个体" />
+
+                    <ImageView
+                        android:layout_weight="2"
+                        android:padding="2dp"
+                        android:src="@drawable/sel"
+                        android:layout_width="3dp"
+                        android:layout_height="match_parent" />
+                </LinearLayout>
                 <LinearLayout
                     android:orientation="horizontal"
                     android:layout_margin="10dp"
@@ -66,13 +97,14 @@
                         android:layout_width="3dp"
                         android:layout_height="match_parent" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_margin="10dp"
                     android:orientation="horizontal"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content">
                     <TextView
-                        android:text="猪只类型: "
+                        android:text="转入舍: "
                         android:layout_width="100dp"
                         android:layout_height="wrap_content" />
                     <!--<TextView-->
@@ -83,41 +115,11 @@
                     <!--android:layout_height="wrap_content" />-->
 
                     <TextView
-                        android:id="@+id/pigTypeTV"
+                        android:id="@+id/desPigstyTV"
                         android:layout_width="141dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:hint="后备母猪" />
-
-                    <ImageView
-                        android:layout_weight="2"
-                        android:padding="2dp"
-                        android:src="@drawable/sel"
-                        android:layout_width="3dp"
-                        android:layout_height="match_parent" />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:text="死淘阶段: "
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content" />
-                    <!--<TextView-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:hint="请选择"-->
-                    <!--android:gravity="right"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content" />-->
-
-                    <TextView
-                        android:id="@+id/eliminateStageTV"
-                        android:layout_width="141dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:hint="后备" />
+                        android:hint="猪圈3栋" />
 
                     <ImageView
                         android:layout_weight="2"
@@ -129,53 +131,16 @@
 
                 <LinearLayout
                     android:layout_margin="10dp"
+
                     android:orientation="horizontal"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content">
                     <TextView
-                        android:text="死淘类别: "
+                        android:text="转舍日期: "
                         android:layout_width="100dp"
                         android:layout_height="wrap_content" />
-                    <!--<TextView-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:hint="请选择"-->
-                    <!--android:gravity="right"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content" />-->
-
                     <TextView
-                        android:id="@+id/eliminateTypeTV"
-                        android:layout_width="141dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:hint="淘汰" />
-
-                    <ImageView
-                        android:layout_weight="2"
-                        android:padding="2dp"
-                        android:src="@drawable/sel"
-                        android:layout_width="3dp"
-                        android:layout_height="match_parent" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:text="死淘原因: "
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content" />
-                    <!--<TextView-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:hint="请选择"-->
-                    <!--android:gravity="right"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content" />-->
-
-                    <TextView
-                        android:id="@+id/eliminateReasonTV"
+                        android:id="@+id/changeDateTV"
                         android:layout_width="141dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
@@ -187,101 +152,6 @@
                         android:src="@drawable/sel"
                         android:layout_width="3dp"
                         android:layout_height="match_parent" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:text="数          量: "
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content" />
-                    <!--<TextView-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:hint="请选择"-->
-                    <!--android:gravity="right"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content" />-->
-
-                    <EditText
-                        android:id="@+id/numberET"
-                        android:layout_width="141dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:inputType="number"
-                        android:hint="1" />
-
-                    <ImageView
-                        android:layout_weight="2"
-                        android:padding="2dp"
-                        android:src="@drawable/sel"
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="3dp"
-                        android:layout_height="20dp" />
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:text="总           重: "
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content" />
-
-                    <EditText
-                        android:id="@+id/totalWeightET"
-                        android:layout_width="141dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:inputType="number"
-                        android:hint="请输入" />
-
-                    <ImageView
-                        android:layout_weight="2"
-                        android:padding="2dp"
-                        android:src="@drawable/sel"
-                        android:layout_gravity="center_vertical"
-                        android:layout_width="3dp"
-                        android:layout_height="20dp"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_margin="10dp"
-
-                    android:orientation="horizontal"
-                    android:layout_width="300dp"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:text="死淘日期: "
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content" />
-                    <!--<TextView-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:hint="请选择"-->
-                    <!--android:gravity="right"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content" />-->
-
-                    <TextView
-                        android:id="@+id/eliminateDateTV"
-                        android:layout_width="141dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:hint="请选择" />
-
-                    <ImageView
-                        android:layout_weight="2"
-                        android:padding="2dp"
-                        android:src="@drawable/sel"
-                        android:layout_width="3dp"
-                        android:layout_height="match_parent" />
-
-
                 </LinearLayout>
 
 
@@ -313,7 +183,7 @@
             </LinearLayout>
         </android.support.v7.widget.CardView>
         <ListView
-            android:id="@+id/eliminateLV"
+            android:id="@+id/pigstyChangeLV"
             android:layout_centerInParent="true"
             android:visibility="gone"
             android:elevation="20dp"

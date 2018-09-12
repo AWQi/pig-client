@@ -9,12 +9,23 @@
     tools:context=".activity.BoarOperaActivity">
 
 
-    <com.pig.client.view.BreedingFrag
+<!--    <com.pig.client.view.BreedingFrag
         android:layout_centerInParent="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    </com.pig.client.view.BreedingFrag>
+    </com.pig.client.view.BreedingFrag>-->
 
+<!--    <com.pig.client.view.EliminateFrag
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.pig.client.view.EliminateFrag>-->
+
+    <com.pig.client.view.PigstyChangeFrag
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">]
+
+    </com.pig.client.view.PigstyChangeFrag>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/main_bottom"
