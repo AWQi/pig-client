@@ -58,6 +58,10 @@ private FrameLayout selLayout ;
 private EditText addDescribeET;
 private Activity activity;
 
+    public BreedingFrag(Context context) {
+        this.context = context;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

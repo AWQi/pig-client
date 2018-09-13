@@ -45,6 +45,10 @@ public class PigstyChangeFrag extends Fragment implements View.OnClickListener{
     private FrameLayout selLayout ;
     private Activity activity;
 
+    public PigstyChangeFrag(Context context) {
+        this.context = context;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

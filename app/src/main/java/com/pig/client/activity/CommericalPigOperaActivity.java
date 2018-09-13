@@ -36,9 +36,9 @@ public class CommericalPigOperaActivity extends AppCompatActivity {
 
         commercialOperaVP  = findViewById(R.id.commercialOperaVP);
 
-        eliminateFrag = new EliminateFrag();
-        pigstyChangeFrag = new PigstyChangeFrag();
-        saleFrag = new SaleFrag();
+        eliminateFrag = new EliminateFrag(CommericalPigOperaActivity.this);
+        pigstyChangeFrag = new PigstyChangeFrag(CommericalPigOperaActivity.this);
+        saleFrag = new SaleFrag(CommericalPigOperaActivity.this);
         fragmentList.add(eliminateFrag);
         fragmentList.add(pigstyChangeFrag);
         fragmentList.add(saleFrag);

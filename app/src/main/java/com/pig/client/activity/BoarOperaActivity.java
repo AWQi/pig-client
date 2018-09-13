@@ -37,9 +37,9 @@ private  ViewPager boarOperaVP;
 
         boarOperaVP  = findViewById(R.id.boarOperaVP);
 
-        breedingFrag = new BreedingFrag();
-        eliminateFrag = new EliminateFrag();
-        pigstyChangeFrag = new PigstyChangeFrag();
+        breedingFrag = new BreedingFrag(BoarOperaActivity.this);
+        eliminateFrag = new EliminateFrag(BoarOperaActivity.this);
+        pigstyChangeFrag = new PigstyChangeFrag(BoarOperaActivity.this);
     fragmentList.add(breedingFrag);
     fragmentList.add(eliminateFrag);
     fragmentList.add(pigstyChangeFrag);

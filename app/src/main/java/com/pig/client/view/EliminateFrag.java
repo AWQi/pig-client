@@ -59,6 +59,10 @@ public class EliminateFrag extends Fragment implements View.OnClickListener{
     private FrameLayout selLayout ;
     private Activity activity;
 
+    public EliminateFrag(Context context) {
+        this.context = context;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

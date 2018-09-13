@@ -57,6 +57,10 @@ public class SaleFrag extends Fragment implements View.OnClickListener{
     private FrameLayout selLayout ;
     private Activity activity;
 
+    public SaleFrag(Context context) {
+        this.context = context;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
