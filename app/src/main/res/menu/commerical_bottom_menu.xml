@@ -5,31 +5,20 @@
          android:enabled="true"
         app:showAsAction="always"
     -->
-    <item android:id="@+id/boara"
-        android:title="配种"
-        android:icon="@drawable/boara"
-        />
-
-    <item android:id="@+id/boarb"
-        android:title="死淘"
-        android:icon="@drawable/boarb"
-
-        />
-    <item android:id="@+id/boarc"
+    <item android:id="@+id/commerciala"
         android:title="出售"
         android:icon="@drawable/boarc"
 
         />
-    <item android:id="@+id/board"
-        android:title="转舍"
-        android:icon="@drawable/board"
+    <item android:id="@+id/commercialb"
+        android:title="死淘"
+        android:icon="@drawable/boarb"
 
         />
 
-
-    <item android:id="@+id/boare"
-    android:title="免疫"
-        android:icon="@drawable/boare"
+    <item android:id="@+id/commercialc"
+        android:title="转舍"
+        android:icon="@drawable/board"
 
         />
 

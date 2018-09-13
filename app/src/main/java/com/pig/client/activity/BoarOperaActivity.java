@@ -27,7 +27,6 @@ private BottomNavigationView boar_opera_bottom;
 private BreedingFrag breedingFrag;
  private EliminateFrag eliminateFrag;
 private PigstyChangeFrag pigstyChangeFrag;
-private SaleFrag saleFrag;
 private List<Fragment>fragmentList = new ArrayList<>();
 private  ViewPager boarOperaVP;
     @Override
@@ -36,24 +35,14 @@ private  ViewPager boarOperaVP;
         setContentView(R.layout.activity_boar_opera);
 
 
-//        breedingFrag = findViewById(R.id.breedingFrag);
-//
-//        eliminateFrag = findViewById(R.id.eliminateFrag);
-//
-//        pigstyChangeFrag = findViewById(R.id.pigstyChangeFrag);
-//
-//        saleFrag = findViewById(R.id.saleFrag);
-
         boarOperaVP  = findViewById(R.id.boarOperaVP);
 
         breedingFrag = new BreedingFrag();
         eliminateFrag = new EliminateFrag();
         pigstyChangeFrag = new PigstyChangeFrag();
-        saleFrag = new SaleFrag();
     fragmentList.add(breedingFrag);
     fragmentList.add(eliminateFrag);
     fragmentList.add(pigstyChangeFrag);
-    fragmentList.add(saleFrag);
     VpAdapter adapter = new VpAdapter(getSupportFragmentManager(),fragmentList);
     boarOperaVP.setAdapter(adapter);
     boarOperaVP.setOffscreenPageLimit(2); //预加载剩下两页
@@ -96,32 +85,14 @@ private  ViewPager boarOperaVP;
                 case R.id.boara:
                     boarOperaVP.setCurrentItem(0); //绑定viewpager
 
-//                    breedingFrag.setElevation(Float.MAX_VALUE);
-//                    eliminateFrag.setElevation(0);
-//                    pigstyChangeFrag.setElevation(0);
-//                    saleFrag.setElevation(0);
                     break;
                 case R.id.boarb:
                     boarOperaVP.setCurrentItem(1);
-//                    eliminateFrag.setElevation(Float.MAX_VALUE);
-//                    breedingFrag.setElevation(0);
-//                    pigstyChangeFrag.setElevation(0);
-//                    saleFrag.setElevation(0);
-                    break;
-                case R.id.boarc:
-                    boarOperaVP.setCurrentItem(2);
-//                    pigstyChangeFrag.setElevation(Float.MAX_VALUE);
-//                    breedingFrag.setElevation(0);
-//                    eliminateFrag.setElevation(0);
-//                    saleFrag.setElevation(0);
+
                     break;
                 case R.id.board:
-                    boarOperaVP.setCurrentItem(3);
+                    boarOperaVP.setCurrentItem(2);
 
-//                    saleFrag.setElevation(Float.MAX_VALUE);
-//                    breedingFrag.setElevation(0);
-//                    eliminateFrag.setElevation(0);
-//                    pigstyChangeFrag.setElevation(0);
                     break;
                 case R.id.boare:
                     break;

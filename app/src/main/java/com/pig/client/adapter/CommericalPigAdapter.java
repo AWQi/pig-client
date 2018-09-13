@@ -1,6 +1,7 @@
 package com.pig.client.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pig.client.R;
+import com.pig.client.activity.CommericalPigOperaActivity;
 
 public class CommericalPigAdapter extends RecyclerView.Adapter {
 
@@ -37,6 +39,13 @@ public class CommericalPigAdapter extends RecyclerView.Adapter {
         holder.pigstyTV.setText("asa");
         holder.businessDateTV.setText("asa");
         holder.ageTV.setText("asa");
+        holder.view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent t = new Intent(context,CommericalPigOperaActivity.class);
+                context.startActivity(t);
+            }
+        });
     }
     @Override
     public int getItemCount() {

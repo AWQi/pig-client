@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.pig.client.R;
 import com.pig.client.activity.BoarActivity;
 import com.pig.client.activity.CommercialPigActivity;
+import com.pig.client.activity.PigstyActivity;
 
 
 public class MainCardRVAdapter extends RecyclerView.Adapter{
@@ -48,8 +49,13 @@ public class MainCardRVAdapter extends RecyclerView.Adapter{
                         Intent t1 = new Intent(context, CommercialPigActivity.class);
                         context.startActivity(t1);
                         break;
-                    case  2:break;
-                    case  3:break;
+                    case  2:
+
+                        break;
+                    case  3:
+                        Intent t3 = new Intent(context, PigstyActivity.class);
+                        context.startActivity(t3);
+                        break;
                     default:break;
                 }
             }

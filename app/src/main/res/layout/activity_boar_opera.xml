@@ -58,7 +58,7 @@
         app:itemIconTint="#ffffff"
         app:itemTextColor="#000000"
 
-        app:menu="@menu/main_bottom_menu">
+        app:menu="@menu/boar_bottom_menu">
         <!--    app:itemIconTint="#FFFFFF"设置图标的颜色
         app:itemTextColor="#FFFFFF"设置文字的颜色
         app:itemBackground="@color/colorPrimary" 设置背景色-->
