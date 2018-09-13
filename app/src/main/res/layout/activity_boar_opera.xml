@@ -8,32 +8,47 @@
     android:background="@drawable/bg"
     tools:context=".activity.BoarOperaActivity">
 
-
-<!--    <com.pig.client.view.BreedingFrag
-        android:layout_centerInParent="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </com.pig.client.view.BreedingFrag>-->
-
-<!--    <com.pig.client.view.EliminateFrag
-        android:layout_centerInParent="true"
+    <!--<FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </com.pig.client.view.EliminateFrag>-->
+        <com.pig.client.view.BreedingFrag
+            android:id="@+id/breedingFrag"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </com.pig.client.view.BreedingFrag>
 
-<!--    <com.pig.client.view.PigstyChangeFrag
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">]
+        <com.pig.client.view.EliminateFrag
+            android:id="@+id/eliminateFrag"
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </com.pig.client.view.EliminateFrag>
 
-    </com.pig.client.view.PigstyChangeFrag>-->
+        <com.pig.client.view.PigstyChangeFrag
+            android:id="@+id/pigstyChangeFrag"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">]
+        </com.pig.client.view.PigstyChangeFrag>
 
-    <com.pig.client.view.SaleFrag
+        <com.pig.client.view.SaleFrag
+            android:id="@+id/saleFrag"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </com.pig.client.view.SaleFrag>
+
+    </FrameLayout>-->
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/boarOperaVP"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    </com.pig.client.view.SaleFrag>
+
+    </android.support.v4.view.ViewPager>
+
 
     <android.support.design.widget.BottomNavigationView
-        android:id="@+id/main_bottom"
+        android:id="@+id/boar_opera_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

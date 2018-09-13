@@ -19,7 +19,8 @@
         <activity android:name=".activity.BoarActivity" />
         <activity android:name=".activity.BoarAddActivity" />
         <activity android:name=".activity.CommercialPigActivity" />
-        <activity android:name=".activity.BoarOperaActivity"></activity>
+        <activity android:name=".activity.BoarOperaActivity" />
+        <activity android:name=".activity.CommericalPigOperaActivity"></activity>
     </application>
 
 </manifest>

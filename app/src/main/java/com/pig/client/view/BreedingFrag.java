@@ -1,5 +1,6 @@
 package com.pig.client.view;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.res.Resources;
@@ -7,9 +8,14 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
@@ -32,7 +38,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class BreedingFrag extends RelativeLayout  implements View.OnClickListener{
+public class BreedingFrag extends Fragment implements View.OnClickListener{
 private Context context;
 private List<String> earlabelList = new ArrayList();
 private List<String> pigstyList = new ArrayList();
@@ -50,24 +56,36 @@ private Button commitBtn;
 private Button resetBtn;
 private FrameLayout selLayout ;
 private EditText addDescribeET;
-public BreedingFrag(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        this.context = context;
-        RelativeLayout.inflate(context, R.layout.breeding_frag,this);
+private Activity activity;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        //    加载fragment
+        View rootView = inflater.inflate(R.layout.breeding_frag, container, false);
+        return rootView;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        activity = getActivity();
         init();
     }
+
     private void init(){
-        femaleBreedTV = findViewById(R.id.femaleBreedTV);
-        maleBreedTV = findViewById(R.id.maleBreedTV);
-        pigstyTV = findViewById(R.id.pigstyTV);
-        breederTV = findViewById(R.id.breederTV);
-        breedWayTV = findViewById(R.id.breedWayTV);
-        breedDateTV = findViewById(R.id.breedDateTV);
-        breedingLV = findViewById(R.id.breedingLV);
-        commitBtn  =findViewById(R.id.commitBtn);
-        resetBtn = findViewById(R.id.resetBtn);
-        selLayout = findViewById(R.id.selLayout);
-        addDescribeET = findViewById(R.id.addDescribeET);
+        femaleBreedTV = activity.findViewById(R.id.femaleBreedTV);
+        maleBreedTV = activity.findViewById(R.id.maleBreedTV);
+        pigstyTV = activity.findViewById(R.id.pigstyTV);
+        breederTV = activity.findViewById(R.id.breederTV);
+        breedWayTV = activity.findViewById(R.id.breedWayTV);
+        breedDateTV = activity.findViewById(R.id.breedDateTV);
+        breedingLV = activity.findViewById(R.id.breedingLV);
+        commitBtn  =activity.findViewById(R.id.commitBtn);
+        resetBtn = activity.findViewById(R.id.resetBtn);
+        selLayout = activity.findViewById(R.id.selLayout);
+        addDescribeET = activity.findViewById(R.id.addDescribeET);
 
 
         femaleBreedTV.setOnClickListener(this);
@@ -82,7 +100,7 @@ public BreedingFrag(Context context, AttributeSet attrs) {
         breedingLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-              breedingLV.setVisibility(GONE);
+              breedingLV.setVisibility(View.GONE);
               String info = ((TextView)view).getText().toString();
                 selLayout.setForeground(null);
 
@@ -109,7 +127,7 @@ public BreedingFrag(Context context, AttributeSet attrs) {
 
 
         final int maxNum = 50;
-        final TextView leftNum = (TextView) findViewById(R.id.leftNum);
+        final TextView leftNum = (TextView) activity.findViewById(R.id.leftNum);
         addDescribeET.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -159,14 +177,14 @@ public BreedingFrag(Context context, AttributeSet attrs) {
                 ArrayAdapter a1 = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,earlabelList);
                 a1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 breedingLV.setAdapter(a1);
-                breedingLV.setVisibility(VISIBLE);
+                breedingLV.setVisibility(View.VISIBLE);
                 selectList = R.id.femaleBreedTV;
                 break;
             case  R.id.maleBreedTV:
                 ArrayAdapter a2 = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,earlabelList);
                 a2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 breedingLV.setAdapter(a2);
-                breedingLV.setVisibility(VISIBLE);
+                breedingLV.setVisibility(View.VISIBLE);
                 selectList = R.id.maleBreedTV;
 
                 break;
@@ -174,7 +192,7 @@ public BreedingFrag(Context context, AttributeSet attrs) {
                 ArrayAdapter a3 = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,pigstyList);
                 a3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 breedingLV.setAdapter(a3);
-                breedingLV.setVisibility(VISIBLE);
+                breedingLV.setVisibility(View.VISIBLE);
                 selectList = R.id.pigstyTV;
 
                 break;
@@ -182,7 +200,7 @@ public BreedingFrag(Context context, AttributeSet attrs) {
                 ArrayAdapter a4 = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,breederList);
                 a4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 breedingLV.setAdapter(a4);
-                breedingLV.setVisibility(VISIBLE);
+                breedingLV.setVisibility(View.VISIBLE);
                 selectList = R.id.breederTV;
 
                 break;
@@ -190,7 +208,7 @@ public BreedingFrag(Context context, AttributeSet attrs) {
                 ArrayAdapter a5 = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,breedWayList);
                 a5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 breedingLV.setAdapter(a5);
-                breedingLV.setVisibility(VISIBLE);
+                breedingLV.setVisibility(View.VISIBLE);
                 selectList = R.id.breedWayTV;
 
                 break;

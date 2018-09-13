@@ -1,10 +1,16 @@
 package com.pig.client.view;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -24,7 +30,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class PigstyChangeFrag extends RelativeLayout  implements View.OnClickListener{
+public class PigstyChangeFrag extends Fragment implements View.OnClickListener{
     private Context context;
     private List<String> pigstyList = new ArrayList();
     private int selectList ;
@@ -37,21 +43,37 @@ public class PigstyChangeFrag extends RelativeLayout  implements View.OnClickLis
     private Button commitBtn;
     private Button resetBtn;
     private FrameLayout selLayout ;
-    public PigstyChangeFrag(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        this.context = context;
-        RelativeLayout.inflate(context, R.layout.pigsty_change_frag,this);
+    private Activity activity;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.pigsty_change_frag,container,false);
+        return  rootView;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        activity = getActivity();
         init();
     }
+
+    //    public PigstyChangeFrag(Context context, AttributeSet attrs) {
+//        super(context, attrs);
+//        this.context = context;
+//        RelativeLayout.inflate(context, R.layout.pigsty_change_frag,this);
+//        init();
+//    }
     private void init(){
 
-        earlabelTV = findViewById(R.id.earlabelTV);
-        pigstyTV = findViewById(R.id.pigstyTV);
-        changeTypeTV = findViewById(R.id.changeTypeTV);
-        desPigstyTV = findViewById(R.id.desPigstyTV);
-        changeDateTV = findViewById(R.id.changeDateTV);
-        pigstyChangeLV = findViewById(R.id.pigstyChangeLV);
-        selLayout = findViewById(R.id.selLayout);
+        earlabelTV = activity.findViewById(R.id.earlabelTV);
+        pigstyTV = activity.findViewById(R.id.pigstyTV);
+        changeTypeTV = activity.findViewById(R.id.changeTypeTV);
+        desPigstyTV = activity.findViewById(R.id.desPigstyTV);
+        changeDateTV = activity.findViewById(R.id.changeDateTV);
+        pigstyChangeLV = activity.findViewById(R.id.pigstyChangeLV);
+        selLayout = activity.findViewById(R.id.selLayout);
 
 
         desPigstyTV.setOnClickListener(this);
@@ -62,7 +84,7 @@ public class PigstyChangeFrag extends RelativeLayout  implements View.OnClickLis
         pigstyChangeLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                pigstyChangeLV.setVisibility(GONE);
+                pigstyChangeLV.setVisibility(View.GONE);
                 String info = ((TextView)view).getText().toString();
                 selLayout.setForeground(null);
                 switch (selectList){
@@ -94,7 +116,7 @@ public class PigstyChangeFrag extends RelativeLayout  implements View.OnClickLis
                 ArrayAdapter a1 = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,pigstyList);
                 a1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 pigstyChangeLV.setAdapter(a1);
-                pigstyChangeLV.setVisibility(VISIBLE);
+                pigstyChangeLV.setVisibility(View.VISIBLE);
                 break;
 
             case  R.id.changeDateTV:

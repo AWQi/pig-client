@@ -1,5 +1,6 @@
 package com.pig.client.view;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.res.Resources;
@@ -7,9 +8,14 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
@@ -32,7 +38,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class EliminateFrag extends RelativeLayout  implements View.OnClickListener{
+public class EliminateFrag extends Fragment implements View.OnClickListener{
     private Context context;
     private List<String> eliminateTypeList = new ArrayList();
     private List<String> eliminateReasonList = new ArrayList();
@@ -51,25 +57,41 @@ public class EliminateFrag extends RelativeLayout  implements View.OnClickListen
     private Button commitBtn;
     private Button resetBtn;
     private FrameLayout selLayout ;
-    public EliminateFrag(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        this.context = context;
-        RelativeLayout.inflate(context, R.layout.eliminate_frag,this);
+    private Activity activity;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+       View rootView =  inflater.inflate(R.layout.eliminate_frag,container,false);
+       return  rootView;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        activity = getActivity();
         init();
     }
+
+//    public EliminateFrag(Context context, AttributeSet attrs) {
+//        super(context, attrs);
+//        this.context = context;
+//        RelativeLayout.inflate(context, R.layout.eliminate_frag,this);
+//       init();
+//    }
     private void init(){
 
-        earlabelTV = findViewById(R.id.earlabelTV);
-        pigTypeTV = findViewById(R.id.pigTypeTV);
-        pigstyTV = findViewById(R.id.pigstyTV);
-        eliminateStageTV = findViewById(R.id.eliminateStageTV);
-        eliminateTypeTV = findViewById(R.id.eliminateTypeTV);
-        eliminateReasonTV = findViewById(R.id.eliminateReasonTV);
-        numberET = findViewById(R.id.numberET);
-        totalWeightET = findViewById(R.id.totalWeightET);
-        eliminateDateTV = findViewById(R.id.eliminateDateTV);
-        eliminateLV = findViewById(R.id.eliminateLV);
-        selLayout = findViewById(R.id.selLayout);
+        earlabelTV = activity.findViewById(R.id.earlabelTV);
+        pigTypeTV = activity.findViewById(R.id.pigTypeTV);
+        pigstyTV = activity.findViewById(R.id.pigstyTV);
+        eliminateStageTV = activity.findViewById(R.id.eliminateStageTV);
+        eliminateTypeTV = activity.findViewById(R.id.eliminateTypeTV);
+        eliminateReasonTV = activity.findViewById(R.id.eliminateReasonTV);
+        numberET = activity.findViewById(R.id.numberET);
+        totalWeightET = activity.findViewById(R.id.totalWeightET);
+        eliminateDateTV = activity.findViewById(R.id.eliminateDateTV);
+        eliminateLV = activity.findViewById(R.id.eliminateLV);
+        selLayout = activity.findViewById(R.id.selLayout);
 
 
         eliminateTypeTV.setOnClickListener(this);
@@ -81,7 +103,7 @@ public class EliminateFrag extends RelativeLayout  implements View.OnClickListen
         eliminateLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                eliminateLV.setVisibility(GONE);
+                eliminateLV.setVisibility(View.GONE);
                 String info = ((TextView)view).getText().toString();
                 selLayout.setForeground(null);
 
@@ -124,13 +146,13 @@ public class EliminateFrag extends RelativeLayout  implements View.OnClickListen
                 ArrayAdapter a1 = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,eliminateTypeList);
                 a1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 eliminateLV.setAdapter(a1);
-                eliminateLV.setVisibility(VISIBLE);
+                eliminateLV.setVisibility(View.VISIBLE);
                 break;
             case  R.id.eliminateReasonTV:
                 ArrayAdapter a2 = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,eliminateReasonList);
                 a2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 eliminateLV.setAdapter(a2);
-                eliminateLV.setVisibility(VISIBLE);
+                eliminateLV.setVisibility(View.VISIBLE);
                 break;
             case  R.id.eliminateDateTV:
                 Calendar calendar = Calendar.getInstance();

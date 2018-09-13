@@ -1,5 +1,6 @@
 package com.pig.client.view;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.res.Resources;
@@ -7,9 +8,14 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
@@ -32,7 +38,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class SaleFrag extends RelativeLayout  implements View.OnClickListener{
+public class SaleFrag extends Fragment implements View.OnClickListener{
     private Context context;
     private int selectList ;
     private TextView earlabelTV;
@@ -49,21 +55,36 @@ public class SaleFrag extends RelativeLayout  implements View.OnClickListener{
     private Button commitBtn;
     private Button resetBtn;
     private FrameLayout selLayout ;
-    public SaleFrag(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        this.context = context;
-        RelativeLayout.inflate(context, R.layout.sale_frag,this);
-        init();
+    private Activity activity;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.sale_frag,container,false);
+        return rootView;
     }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        activity = getActivity();
+    }
+
+//    public SaleFrag(Context context, AttributeSet attrs) {
+//        super(context, attrs);
+//        this.context = context;
+//        RelativeLayout.inflate(context, R.layout.sale_frag,this);
+//        init();
+//    }
     private void init(){
 
-        earlabelTV = findViewById(R.id.earlabelTV);
-        pigTypeTV = findViewById(R.id.pigTypeTV);
-        pigstyTV = findViewById(R.id.pigstyTV);
-        numberET = findViewById(R.id.numberET);
-        totalWeightET = findViewById(R.id.totalWeightET);
-        salesDateTV = findViewById(R.id.salesDateTV);
-        selLayout = findViewById(R.id.selLayout);
+        earlabelTV = activity.findViewById(R.id.earlabelTV);
+        pigTypeTV = activity.findViewById(R.id.pigTypeTV);
+        pigstyTV = activity.findViewById(R.id.pigstyTV);
+        numberET = activity.findViewById(R.id.numberET);
+        totalWeightET = activity.findViewById(R.id.totalWeightET);
+        salesDateTV = activity.findViewById(R.id.salesDateTV);
+        selLayout = activity.findViewById(R.id.selLayout);
 
         salesDateTV.setOnClickListener(this);
     }
