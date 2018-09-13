@@ -21,11 +21,16 @@
         android:layout_height="match_parent">
     </com.pig.client.view.EliminateFrag>-->
 
-    <com.pig.client.view.PigstyChangeFrag
+<!--    <com.pig.client.view.PigstyChangeFrag
         android:layout_width="match_parent"
         android:layout_height="match_parent">]
 
-    </com.pig.client.view.PigstyChangeFrag>
+    </com.pig.client.view.PigstyChangeFrag>-->
+
+    <com.pig.client.view.SaleFrag
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.pig.client.view.SaleFrag>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/main_bottom"
