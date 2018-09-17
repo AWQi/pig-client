@@ -13,6 +13,7 @@ import com.pig.client.adapter.GuardilAdapter;
 import com.pig.client.util.PigHttpUtil;
 import com.pig.client.util.PigResult;
 import com.pig.client.view.TitleBar;
+import com.pig.client.websocket.PersistentConnection;
 
 import java.util.List;
 
@@ -26,6 +27,8 @@ private Activity activity = this;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pigsty);
+        PersistentConnection.getInstance().init();
+
         titleBar = findViewById(R.id.titleBar);
         titleBar.setTitle("存栏信息");
         titleBar.setMenuIV(R.drawable.add);
