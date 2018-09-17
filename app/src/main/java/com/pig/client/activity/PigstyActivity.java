@@ -27,7 +27,7 @@ private Activity activity = this;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pigsty);
-        PersistentConnection.getInstance().init();
+        PersistentConnection.getInstance().init(PigstyActivity.this);
 
         titleBar = findViewById(R.id.titleBar);
         titleBar.setTitle("存栏信息");
@@ -58,7 +58,11 @@ private Activity activity = this;
             }
         }).start();
 
+    }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        PersistentConnection.getInstance().close();
     }
 }

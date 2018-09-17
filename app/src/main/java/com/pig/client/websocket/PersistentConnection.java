@@ -1,9 +1,12 @@
 package com.pig.client.websocket;
 
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 
+import com.pig.client.util.ApplicationUtil;
 import com.pig.client.util.JsonUtil;
 import com.pig.client.util.MacAddressUtil;
 
@@ -14,6 +17,7 @@ import java.net.URI;
 
 
 public class PersistentConnection{
+    private static final String TAG = "PersistentConnection";
     public static final String WEBSOCKET_ARRD = "ws://10.0.2.2:8887";
     private static PersistentConnection mInstance;
     private ReconnectingWSClient mSocketClient;
@@ -35,14 +39,13 @@ public class PersistentConnection{
     }
 
 
-    public void init()
+    public void init(final Context context)
     {
 
         try {
 
             mSocketClient = new ReconnectingWSClient(new URI(WEBSOCKET_ARRD),new Draft_17())
             {
-
 
                 @Override
                 public void onOpenEvent(ServerHandshake handshakedata) {
@@ -56,15 +59,17 @@ public class PersistentConnection{
                 }
                 @Override
                 public void onErrorEvent(Exception ex) {
-                    Log.d("", "发生错误: ");
+                    Log.d("", "发生错误: "+ex.getMessage());
                 }
 
                 @Override
                 public void onMessageEvent(String message) {
-                    Log.d("", "onMessageEvent: ");
-                    Log.d("picher_log", "接收消息" + message);
-
-
+                    Log.d(TAG, "接收消息------------------------------: "+message);
+                    ClientMsg msg = JsonUtil.StrToObj(message,ClientMsg.class);
+                    if (msg.getEventType().equals("online")){
+                        Toast.makeText(context,msg.msg,Toast.LENGTH_SHORT).show();
+                        Log.d(TAG, "onMessageEvent: ");
+                    }
 
                 }
             };
@@ -135,12 +140,13 @@ public class PersistentConnection{
             //
         }
 
-
-
-
-
     }
 
+     public void close(){
+       if (!mSocketClient.isClosed()){
+            mSocketClient.close();
+        }
 
+    }
 
 }
