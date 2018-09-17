@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
+import com.pig.client.pojo.Breeder;
 import com.pig.client.pojo.BreedingPig;
 import com.pig.client.pojo.Pigsty;
 
@@ -222,6 +223,13 @@ public class PigHttpUtil {
     static public  void  queryAllPigsty(PigHttpCallBack pigHttpCallBack){
         pigPostHttp(PIGSTY_QUERY_ALL,null,null,null,pigHttpCallBack);
     }
+
+    static public  final  Type BREEDER_LIST_TYPE = new TypeToken<PigResult.PigList<Breeder>>() {}.getType();
+    static final  private String BREEDER_QUERY_ALL =  "http://"+HOST+"/Breeder/queryAll";
+    static public  void  queryAllBreeder(PigHttpCallBack pigHttpCallBack){
+        pigPostHttp(BREEDER_QUERY_ALL,null,null,null,pigHttpCallBack);
+    }
+
 
 //    static Handler handler = new Handler(){
 //        @Override

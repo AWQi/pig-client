@@ -11,6 +11,8 @@ public class Pigsty {
 
     private Integer illumination;
 
+    private String pigType;
+
     public Integer getId() {
         return id;
     }
@@ -49,5 +51,13 @@ public class Pigsty {
 
     public void setIllumination(Integer illumination) {
         this.illumination = illumination;
+    }
+
+    public String getPigType() {
+        return pigType;
+    }
+
+    public void setPigType(String pigType) {
+        this.pigType = pigType == null ? null : pigType.trim();
     }
 }

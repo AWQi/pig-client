@@ -6,6 +6,12 @@
     android:layout_margin="10dp"
     android:layout_width="130dp"
     android:layout_height="120dp">
+    <ImageView
+        android:id="@+id/warningIV"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/warning"
+        android:layout_width="20dp"
+        android:layout_height="20dp" />
 
 
     <TextView
@@ -36,6 +42,7 @@
             android:layout_height="30dp" />
         <TextView
             android:text="1"
+            android:id="@+id/humidityTV"
             android:layout_weight="1"
             android:gravity="center"
             android:layout_width="match_parent"
@@ -46,16 +53,13 @@
             android:layout_width="match_parent"
             android:layout_height="30dp" />
         <TextView
+            android:id="@+id/temperatureTV"
             android:text="1"
             android:layout_weight="1"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="30dp" />
-        <ImageView
-            android:layout_weight="1"
-            android:src="@drawable/warning"
-            android:layout_width="match_parent"
-            android:layout_height="30dp" />
+
 
     </LinearLayout>
 

@@ -33,6 +33,7 @@ import android.widget.TextView;
 
 import com.pig.client.R;
 import com.pig.client.activity.BoarAddActivity;
+import com.pig.client.pojo.Breeder;
 import com.pig.client.pojo.BreedingPig;
 import com.pig.client.pojo.Pigsty;
 import com.pig.client.util.PigHttpUtil;
@@ -47,8 +48,10 @@ private Context context;
 private List<String> earlabelList = new ArrayList();
 private List<Pigsty> pigstyList = new ArrayList();
 private List<String> pigstyNameList = new ArrayList<>();
+
 private List<String> breedWayList = new ArrayList();
-private List<String> breederList = new ArrayList<>();
+private List<Breeder> breederList = new ArrayList<>();
+private List<String>breederNameList = new ArrayList<>();
 private int selectList ;
 private EditText femaleBreedTV;
 private EditText maleBreedTV;
@@ -63,6 +66,7 @@ private FrameLayout selLayout ;
 private EditText addDescribeET;
 private Activity activity;
 private BreedingPig breedingPig;
+private Fragment fragment  = this;
 
     public BreedingFrag(Context context, BreedingPig breedingPig) {
         this.context = context;
@@ -113,6 +117,8 @@ private BreedingPig breedingPig;
             maleBreedTV.setFocusable(View.NOT_FOCUSABLE);
         }
 
+
+//  猪舍
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -133,8 +139,27 @@ private BreedingPig breedingPig;
                 });
             }
         }).start();
-
-
+// 配种员
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                PigHttpUtil.queryAllBreeder(new PigHttpUtil.PigListCallBack(PigHttpUtil.BREEDER_LIST_TYPE) {
+                    @Override
+                    public void analyticData(final PigResult.PigList pigList) {
+                        activity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                List list = pigList.getData();
+                                breederList.addAll(list);
+                                for (int i = 0;i<breederList.size();i++){
+                                    breederNameList.add(breederList.get(i).getName());
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+        }).start();
 
 
 
@@ -198,6 +223,12 @@ private BreedingPig breedingPig;
         });
 
 
+        resetBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+
 
 
         earlabelList.add("AAA");
@@ -208,13 +239,13 @@ private BreedingPig breedingPig;
 //        pigstyList.add("BBB");
 //        pigstyList.add("BBB");
 
-        breedWayList.add("CCC");
-        breedWayList.add("CCC");
-        breedWayList.add("CCC");
-
-        breederList.add("DDD");
-        breederList.add("DDD");
-        breederList.add("DDD");
+        breedWayList.add("本交");
+        breedWayList.add("人工授精");
+        breedWayList.add("深部受精");
+//
+//        breederList.add("DDD");
+//        breederList.add("DDD");
+//        breederList.add("DDD");
 
     }
 
@@ -251,7 +282,7 @@ private BreedingPig breedingPig;
 
                 break;
             case  R.id.breederTV:
-                ArrayAdapter a4 = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,breederList);
+                ArrayAdapter a4 = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,breederNameList);
                 a4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 breedingLV.setAdapter(a4);
                 breedingLV.setVisibility(View.VISIBLE);

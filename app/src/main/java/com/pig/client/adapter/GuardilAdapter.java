@@ -8,35 +8,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pig.client.R;
+import com.pig.client.pojo.Pigsty;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GuardilAdapter extends RecyclerView.Adapter{
-    private List<String>  guardilList = new ArrayList<>();
     private Context context;
+    private List<Pigsty> pigstieList = new ArrayList<>();
 
-    public GuardilAdapter(List<String> guardilList, Context context) {
-        this.guardilList = guardilList;
+    public GuardilAdapter(Context context) {
         this.context = context;
 
     }
 
-    public GuardilAdapter(Context context) {
+    public GuardilAdapter(Context context, List<Pigsty> pigstieList) {
         this.context = context;
-        guardilList.add("母猪");
-        guardilList.add("公猪");
-        guardilList.add("哺乳猪");
-        guardilList.add("保育猪");
-        guardilList.add("育肥猪");
-        guardilList.add("无耳后备");
-        guardilList.add("无耳后备");
-        guardilList.add("无耳后备");
-        guardilList.add("无耳后备");
-        guardilList.add("无耳后备");
+        this.pigstieList = pigstieList;
     }
 
     @NonNull
@@ -50,8 +42,16 @@ public class GuardilAdapter extends RecyclerView.Adapter{
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
             GuardilHolder holder = (GuardilHolder) viewHolder;
+            Pigsty pigsty = pigstieList.get(i);
             holder.guardilItemNum.setText("11");
-            holder.guardilItemText.setText(guardilList.get(i));
+            holder.guardilItemText.setText(pigsty.getName());
+            holder.humidityTV.setText(String.valueOf(pigsty.getHumidity()));
+            holder.temperatureTV.setText(String.valueOf(pigsty.getTemperature()));
+            if (pigsty.getTemperature()<5||pigsty.getTemperature()>40){
+                holder.warningIV.setVisibility(View.VISIBLE);
+            }else {
+                holder.warningIV.setVisibility(View.INVISIBLE);
+            }
             holder.view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -62,17 +62,23 @@ public class GuardilAdapter extends RecyclerView.Adapter{
 
     @Override
     public int getItemCount() {
-        return guardilList.size();
+        return pigstieList.size();
     }
     class  GuardilHolder extends RecyclerView.ViewHolder{
         public  View view;
         public TextView guardilItemNum;
         public TextView guardilItemText;
+        public TextView humidityTV;
+        public TextView temperatureTV;
+        public ImageView warningIV;
         public GuardilHolder(@NonNull View itemView) {
             super(itemView);
             view = itemView;
             guardilItemNum = itemView.findViewById(R.id.guardilItemNum);
             guardilItemText = itemView.findViewById(R.id.guardilItemText);
+            humidityTV = itemView.findViewById(R.id.humidityTV);
+            temperatureTV = itemView.findViewById(R.id.temperatureTV);
+            warningIV = itemView.findViewById(R.id.warningIV);
         }
     }
 }

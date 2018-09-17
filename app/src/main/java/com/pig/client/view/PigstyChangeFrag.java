@@ -27,6 +27,9 @@ import android.widget.TextView;
 import com.pig.client.R;
 import com.pig.client.pojo.BreedingPig;
 import com.pig.client.pojo.CommercialPig;
+import com.pig.client.pojo.Pigsty;
+import com.pig.client.util.PigHttpUtil;
+import com.pig.client.util.PigResult;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -34,7 +37,8 @@ import java.util.List;
 
 public class PigstyChangeFrag extends Fragment implements View.OnClickListener{
     private Context context;
-    private List<String> pigstyList = new ArrayList();
+    private List<Pigsty> pigstyList = new ArrayList();
+    private List<String> pigstyNameList = new ArrayList<>();
     private int selectList ;
     private TextView earlabelTV;
     private TextView pigstyTV;
@@ -96,6 +100,17 @@ public class PigstyChangeFrag extends Fragment implements View.OnClickListener{
         pigstyChangeLV = activity.findViewById(R.id.pigstyChangeLV);
         selLayout = activity.findViewById(R.id.selLayout);
 
+        if (breedingPig!=null){
+            earlabelTV.setText(String.valueOf(breedingPig.getEarlabel()));
+            pigstyTV.setText(String.valueOf(breedingPig.getPigstyMessage()));
+        }
+        if (commercialPig!=null){
+            earlabelTV.setText(String.valueOf(commercialPig.getEarlabel()));
+            pigstyTV.setText(String.valueOf(commercialPig.getPigstyMessage()));
+//            eliminateStageTV.setText(breedingPig.get);
+        }
+
+
 
         desPigstyTV.setOnClickListener(this);
         changeDateTV.setOnClickListener(this);
@@ -117,9 +132,28 @@ public class PigstyChangeFrag extends Fragment implements View.OnClickListener{
             }
         });
 
-        pigstyList.add("AAA");
-        pigstyList.add("AAA");
-        pigstyList.add("AAA");
+
+        //  猪舍
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                PigHttpUtil.queryAllPigsty(new PigHttpUtil.PigListCallBack(PigHttpUtil.PIGSTY_LIST_TYPE) {
+                    @Override
+                    public void analyticData(final PigResult.PigList pigList) {
+                        activity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                List list = pigList.getData();
+                                pigstyList.addAll(list);
+                                for (int i = 0;i<pigstyList.size();i++){
+                                    pigstyNameList.add(pigstyList.get(i).getName());
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+        }).start();
 
 
     }
@@ -134,7 +168,7 @@ public class PigstyChangeFrag extends Fragment implements View.OnClickListener{
 
         switch (v.getId()){
             case  R.id.desPigstyTV:
-                ArrayAdapter a1 = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,pigstyList);
+                ArrayAdapter a1 = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,pigstyNameList);
                 a1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 pigstyChangeLV.setAdapter(a1);
                 pigstyChangeLV.setVisibility(View.VISIBLE);

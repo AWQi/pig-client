@@ -34,6 +34,7 @@ import android.widget.TextView;
 import com.pig.client.R;
 import com.pig.client.activity.BoarAddActivity;
 import com.pig.client.pojo.BreedingPig;
+import com.pig.client.pojo.CommercialPig;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -60,10 +61,16 @@ public class EliminateFrag extends Fragment implements View.OnClickListener{
     private FrameLayout selLayout ;
     private Activity activity;
     private BreedingPig breedingPig;
+    private CommercialPig commercialPig;
 
     public EliminateFrag(Context context, BreedingPig breedingPig) {
         this.context = context;
         this.breedingPig = breedingPig;
+    }
+
+    public EliminateFrag(Context context, CommercialPig commercialPig) {
+        this.context = context;
+        this.commercialPig = commercialPig;
     }
 
     public EliminateFrag(Context context) {
@@ -110,6 +117,20 @@ public class EliminateFrag extends Fragment implements View.OnClickListener{
         eliminateDateTV.setOnClickListener(this);
 
 
+        if (breedingPig!=null){
+            earlabelTV.setText(String.valueOf(breedingPig.getEarlabel()));
+            pigTypeTV.setText(breedingPig.getPigType());
+            pigstyTV.setText(String.valueOf(breedingPig.getPigstyMessage()));
+            eliminateStageTV.setText(breedingPig.getPigState());
+        }
+        if (commercialPig!=null){
+            earlabelTV.setText(String.valueOf(commercialPig.getEarlabel()));
+            pigTypeTV.setText(commercialPig.getPigType());
+            pigstyTV.setText(String.valueOf(commercialPig.getPigstyMessage()));
+//            eliminateStageTV.setText(breedingPig.get);
+        }
+
+
         setListViewBasedOnChildren(eliminateLV);
         eliminateLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -133,13 +154,18 @@ public class EliminateFrag extends Fragment implements View.OnClickListener{
 
 
 
-        eliminateTypeList.add("AAA");
-        eliminateTypeList.add("AAA");
-        eliminateTypeList.add("AAA");
+        eliminateTypeList.add("淘汰");
+        eliminateTypeList.add("死亡");
 
-        eliminateReasonList.add("BBB");
-        eliminateReasonList.add("BBB");
-        eliminateReasonList.add("BBB");
+
+
+
+        eliminateReasonList.add("应激性疾病");
+        eliminateReasonList.add("非疾病死亡");
+        eliminateReasonList.add("败血型疾病");
+        eliminateReasonList.add("呼吸系统疾病");
+        eliminateReasonList.add("腹泻死亡");
+        eliminateReasonList.add("其他");
 
 
     }
