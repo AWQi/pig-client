@@ -33,6 +33,10 @@ import android.widget.TextView;
 
 import com.pig.client.R;
 import com.pig.client.activity.BoarAddActivity;
+import com.pig.client.pojo.BreedingPig;
+import com.pig.client.pojo.Pigsty;
+import com.pig.client.util.PigHttpUtil;
+import com.pig.client.util.PigResult;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -41,12 +45,13 @@ import java.util.List;
 public class BreedingFrag extends Fragment implements View.OnClickListener{
 private Context context;
 private List<String> earlabelList = new ArrayList();
-private List<String> pigstyList = new ArrayList();
+private List<Pigsty> pigstyList = new ArrayList();
+private List<String> pigstyNameList = new ArrayList<>();
 private List<String> breedWayList = new ArrayList();
 private List<String> breederList = new ArrayList<>();
 private int selectList ;
-private TextView femaleBreedTV;
-private TextView maleBreedTV;
+private EditText femaleBreedTV;
+private EditText maleBreedTV;
 private TextView pigstyTV;
 private TextView breederTV;
 private TextView breedWayTV;
@@ -57,9 +62,18 @@ private Button resetBtn;
 private FrameLayout selLayout ;
 private EditText addDescribeET;
 private Activity activity;
+private BreedingPig breedingPig;
+
+    public BreedingFrag(Context context, BreedingPig breedingPig) {
+        this.context = context;
+        this.breedingPig = breedingPig;
+    }
 
     public BreedingFrag(Context context) {
         this.context = context;
+    }
+
+    public BreedingFrag() {
     }
 
     @Nullable
@@ -91,13 +105,49 @@ private Activity activity;
         selLayout = activity.findViewById(R.id.selLayout);
         addDescribeET = activity.findViewById(R.id.addDescribeET);
 
+        if (breedingPig.getGender()==0){ //母
+            femaleBreedTV.setText(String.valueOf(breedingPig.getEarlabel()));
+            femaleBreedTV.setFocusable(View.NOT_FOCUSABLE);
+        }else if (breedingPig.getGender()==1){//公
+            maleBreedTV.setText(String.valueOf(breedingPig.getEarlabel()));
+            maleBreedTV.setFocusable(View.NOT_FOCUSABLE);
+        }
 
-        femaleBreedTV.setOnClickListener(this);
-        maleBreedTV.setOnClickListener(this);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                PigHttpUtil.queryAllPigsty(new PigHttpUtil.PigListCallBack(PigHttpUtil.PIGSTY_LIST_TYPE) {
+                    @Override
+                    public void analyticData(final PigResult.PigList pigList) {
+                        activity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                List list = pigList.getData();
+                                pigstyList.addAll(list);
+                                for (int i = 0;i<pigstyList.size();i++){
+                                    pigstyNameList.add(pigstyList.get(i).getName());
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+        }).start();
+
+
+
+
+
+
+//        femaleBreedTV.setOnClickListener(this);
+//        maleBreedTV.setOnClickListener(this);
         pigstyTV.setOnClickListener(this);
         breederTV.setOnClickListener(this);
         breedWayTV.setOnClickListener(this);
         breedDateTV.setOnClickListener(this);
+
+
+
 
 
         setListViewBasedOnChildren(breedingLV);
@@ -154,9 +204,9 @@ private Activity activity;
         earlabelList.add("AAA");
         earlabelList.add("AAA");
 
-        pigstyList.add("BBB");
-        pigstyList.add("BBB");
-        pigstyList.add("BBB");
+//        pigstyList.add("BBB");
+//        pigstyList.add("BBB");
+//        pigstyList.add("BBB");
 
         breedWayList.add("CCC");
         breedWayList.add("CCC");
@@ -193,7 +243,7 @@ private Activity activity;
 
                 break;
             case  R.id.pigstyTV:
-                ArrayAdapter a3 = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,pigstyList);
+                ArrayAdapter a3 = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item,pigstyNameList);
                 a3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 breedingLV.setAdapter(a3);
                 breedingLV.setVisibility(View.VISIBLE);

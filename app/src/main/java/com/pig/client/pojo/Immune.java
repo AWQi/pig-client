@@ -1,11 +1,13 @@
 package com.pig.client.pojo;
 
-public class PigImmune {
+public class Immune {
+    private Integer id;
+
     private String immuneName;
 
     private Integer earlabel;
 
-    private String immuneDate;
+    private Long immuneDate;
 
     private String vaccine;
 
@@ -18,6 +20,14 @@ public class PigImmune {
     private String immuneType;
 
     private String operator;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getImmuneName() {
         return immuneName;
@@ -35,12 +45,12 @@ public class PigImmune {
         this.earlabel = earlabel;
     }
 
-    public String getImmuneDate() {
+    public Long getImmuneDate() {
         return immuneDate;
     }
 
-    public void setImmuneDate(String immuneDate) {
-        this.immuneDate = immuneDate == null ? null : immuneDate.trim();
+    public void setImmuneDate(Long immuneDate) {
+        this.immuneDate = immuneDate;
     }
 
     public String getVaccine() {

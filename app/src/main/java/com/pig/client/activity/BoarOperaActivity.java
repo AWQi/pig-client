@@ -1,5 +1,6 @@
 package com.pig.client.activity;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 
 import com.pig.client.R;
 import com.pig.client.adapter.VpAdapter;
+import com.pig.client.pojo.BreedingPig;
 import com.pig.client.view.BreedingFrag;
 import com.pig.client.view.EliminateFrag;
 import com.pig.client.view.PigstyChangeFrag;
@@ -34,12 +36,19 @@ private  ViewPager boarOperaVP;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_boar_opera);
 
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        BreedingPig breedingPig = (BreedingPig) bundle.get("BreedingPig");
 
-        boarOperaVP  = findViewById(R.id.boarOperaVP);
 
-        breedingFrag = new BreedingFrag(BoarOperaActivity.this);
-        eliminateFrag = new EliminateFrag(BoarOperaActivity.this);
-        pigstyChangeFrag = new PigstyChangeFrag(BoarOperaActivity.this);
+
+
+
+    boarOperaVP  = findViewById(R.id.boarOperaVP);
+
+    breedingFrag = new BreedingFrag(BoarOperaActivity.this,breedingPig);
+    eliminateFrag = new EliminateFrag(BoarOperaActivity.this,breedingPig);
+    pigstyChangeFrag = new PigstyChangeFrag(BoarOperaActivity.this,breedingPig);
     fragmentList.add(breedingFrag);
     fragmentList.add(eliminateFrag);
     fragmentList.add(pigstyChangeFrag);
@@ -69,12 +78,15 @@ private  ViewPager boarOperaVP;
         boar_opera_bottom = findViewById(R.id.boar_opera_bottom);
         boar_opera_bottom.setOnNavigationItemSelectedListener(new BoarOperaBottomListenser());// 选择监听
         boar_opera_bottom.setSelectedItemId(R.id.boara);//  设置默认选择
+
+
+
+
     }
 
     /**
      *
      *
-     * //  底部  选择栏  监听器   切换中部视图
      */
     class  BoarOperaBottomListenser  implements BottomNavigationView.OnNavigationItemSelectedListener{
 

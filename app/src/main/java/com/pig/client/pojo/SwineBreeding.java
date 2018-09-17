@@ -1,6 +1,8 @@
 package com.pig.client.pojo;
 
 public class SwineBreeding {
+    private Integer id;
+
     private Integer earlabelFemale;
 
     private Integer earlabelMale;
@@ -11,9 +13,17 @@ public class SwineBreeding {
 
     private String breederWay;
 
-    private String breederDate;
+    private Long breederDate;
 
     private String remark;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Integer getEarlabelFemale() {
         return earlabelFemale;
@@ -55,12 +65,12 @@ public class SwineBreeding {
         this.breederWay = breederWay == null ? null : breederWay.trim();
     }
 
-    public String getBreederDate() {
+    public Long getBreederDate() {
         return breederDate;
     }
 
-    public void setBreederDate(String breederDate) {
-        this.breederDate = breederDate == null ? null : breederDate.trim();
+    public void setBreederDate(Long breederDate) {
+        this.breederDate = breederDate;
     }
 
     public String getRemark() {

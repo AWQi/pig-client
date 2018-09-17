@@ -25,6 +25,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.pig.client.R;
+import com.pig.client.pojo.BreedingPig;
+import com.pig.client.pojo.CommercialPig;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -44,6 +46,21 @@ public class PigstyChangeFrag extends Fragment implements View.OnClickListener{
     private Button resetBtn;
     private FrameLayout selLayout ;
     private Activity activity;
+    private BreedingPig breedingPig;
+    private CommercialPig commercialPig;
+
+    public PigstyChangeFrag() {
+    }
+
+    public PigstyChangeFrag(Context context, BreedingPig breedingPig) {
+        this.context = context;
+        this.breedingPig = breedingPig;
+    }
+
+    public PigstyChangeFrag(Context context, CommercialPig commercialPig) {
+        this.context = context;
+        this.commercialPig = commercialPig;
+    }
 
     public PigstyChangeFrag(Context context) {
         this.context = context;

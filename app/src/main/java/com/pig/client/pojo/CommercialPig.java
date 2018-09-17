@@ -1,11 +1,11 @@
 package com.pig.client.pojo;
 
-public class AddCommercialPigs {
+public class CommercialPig {
     private Integer batchNumber;
 
     private Integer earlabel;
 
-    private String pigstyMessage;
+    private Integer pigstyMessage;
 
     private String breeder;
 
@@ -15,7 +15,7 @@ public class AddCommercialPigs {
 
     private Integer number;
 
-    private String businessDate;
+    private Long businessDate;
 
     public Integer getBatchNumber() {
         return batchNumber;
@@ -33,12 +33,12 @@ public class AddCommercialPigs {
         this.earlabel = earlabel;
     }
 
-    public String getPigstyMessage() {
+    public Integer getPigstyMessage() {
         return pigstyMessage;
     }
 
-    public void setPigstyMessage(String pigstyMessage) {
-        this.pigstyMessage = pigstyMessage == null ? null : pigstyMessage.trim();
+    public void setPigstyMessage(Integer pigstyMessage) {
+        this.pigstyMessage = pigstyMessage;
     }
 
     public String getBreeder() {
@@ -73,11 +73,11 @@ public class AddCommercialPigs {
         this.number = number;
     }
 
-    public String getBusinessDate() {
+    public Long getBusinessDate() {
         return businessDate;
     }
 
-    public void setBusinessDate(String businessDate) {
-        this.businessDate = businessDate == null ? null : businessDate.trim();
+    public void setBusinessDate(Long businessDate) {
+        this.businessDate = businessDate;
     }
 }

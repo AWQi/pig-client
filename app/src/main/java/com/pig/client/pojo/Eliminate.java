@@ -1,6 +1,8 @@
 package com.pig.client.pojo;
 
-public class PigEliminate {
+public class Eliminate {
+    private Integer id;
+
     private Integer earlabel;
 
     private String pigstyMessage;
@@ -17,7 +19,15 @@ public class PigEliminate {
 
     private Float totalWeight;
 
-    private String eliminateDate;
+    private Long eliminateDate;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public Integer getEarlabel() {
         return earlabel;
@@ -83,11 +93,11 @@ public class PigEliminate {
         this.totalWeight = totalWeight;
     }
 
-    public String getEliminateDate() {
+    public Long getEliminateDate() {
         return eliminateDate;
     }
 
-    public void setEliminateDate(String eliminateDate) {
-        this.eliminateDate = eliminateDate == null ? null : eliminateDate.trim();
+    public void setEliminateDate(Long eliminateDate) {
+        this.eliminateDate = eliminateDate;
     }
 }

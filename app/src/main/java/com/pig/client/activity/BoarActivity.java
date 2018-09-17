@@ -1,5 +1,6 @@
 package com.pig.client.activity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -18,13 +19,18 @@ import android.widget.SearchView;
 import com.pig.client.R;
 import com.pig.client.adapter.BoarAdapter;
 import com.pig.client.adapter.MainCardRVAdapter;
+import com.pig.client.util.PigHttpUtil;
+import com.pig.client.util.PigResult;
 import com.pig.client.view.AddBoarLayout;
 import com.pig.client.view.TitleBar;
+
+import java.util.List;
 
 public class BoarActivity extends AppCompatActivity {
     private SearchView searchView = null;
     private TitleBar titleBar = null;
     private RecyclerView boarRV = null;
+    private Activity activity = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +41,8 @@ public class BoarActivity extends AppCompatActivity {
         titleBar.setMenuOnClick(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent t =  new Intent(BoarActivity.this,BoarAddActivity.class);
-                startActivity(t);
+//                Intent t =  new Intent(BoarActivity.this,BoarAddActivity.class);
+//                startActivity(t);
 
 //                LayoutInflater layoutInflater = LayoutInflater.from(BoarActivity.this); //context
 //                LinearLayout layout = (LinearLayout) layoutInflater.inflate(R.layout.activity_boar_add, null);//自定义的layout
@@ -65,7 +71,7 @@ public class BoarActivity extends AppCompatActivity {
                         .setView(layout)
                         .create();
                      dialog.show();
-                     dialog.getWindow().setContentView(layout);
+//                     dialog.getWindow().setContentView(layout);
 
 
             }
@@ -74,9 +80,30 @@ public class BoarActivity extends AppCompatActivity {
         searchView.setIconifiedByDefault(false);
 
         boarRV = findViewById(R.id.boarRV);
-        LinearLayoutManager layoutManager  = new LinearLayoutManager(BoarActivity.this);
-        boarRV.setLayoutManager(layoutManager);
-        boarRV.setAdapter(new BoarAdapter(BoarActivity.this));
-        boarRV.addItemDecoration(new DividerItemDecoration(BoarActivity.this,DividerItemDecoration.VERTICAL));
+
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                PigHttpUtil.queryAllBreed(new PigHttpUtil.PigListCallBack(PigHttpUtil.BREED_LIST_TYPE) {
+                    @Override
+                    public void analyticData(final PigResult.PigList pigList) {
+                        activity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                List list =  pigList.getData();
+                                LinearLayoutManager layoutManager  = new LinearLayoutManager(BoarActivity.this);
+
+                                boarRV.setLayoutManager(layoutManager);
+                                boarRV.setAdapter(new BoarAdapter(list,BoarActivity.this));
+                                boarRV.addItemDecoration(new DividerItemDecoration(BoarActivity.this,DividerItemDecoration.VERTICAL));
+                            }
+                        });
+
+                    }
+                });
+            }
+        }).start();
+
     }
 }

@@ -6,6 +6,12 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg"
     tools:context=".activity.PigstyActivity">
+    <RelativeLayout
+        android:background="@drawable/baibg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
 
     <com.pig.client.view.TitleBar
         android:id="@+id/titleBar"
@@ -57,5 +63,5 @@
         </android.support.v7.widget.RecyclerView>
 
     </android.support.v7.widget.CardView>
-
+    </RelativeLayout>
 </RelativeLayout>

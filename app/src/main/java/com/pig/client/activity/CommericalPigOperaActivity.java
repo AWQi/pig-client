@@ -35,13 +35,18 @@ public class CommericalPigOperaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_commerical_pig_opera);
 
         commercialOperaVP  = findViewById(R.id.commercialOperaVP);
-
         eliminateFrag = new EliminateFrag(CommericalPigOperaActivity.this);
         pigstyChangeFrag = new PigstyChangeFrag(CommericalPigOperaActivity.this);
         saleFrag = new SaleFrag(CommericalPigOperaActivity.this);
+
+        /**
+         *    顺序与bottom  menu 对应
+         */
+        fragmentList.add(saleFrag);
         fragmentList.add(eliminateFrag);
         fragmentList.add(pigstyChangeFrag);
-        fragmentList.add(saleFrag);
+
+
         VpAdapter adapter = new VpAdapter(getSupportFragmentManager(),fragmentList);
         commercialOperaVP.setAdapter(adapter);
         commercialOperaVP.setOffscreenPageLimit(2); //预加载剩下两页

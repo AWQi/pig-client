@@ -15,6 +15,7 @@ import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -72,6 +73,7 @@ public class SaleFrag extends Fragment implements View.OnClickListener{
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         activity = getActivity();
+        init();
     }
 
 //    public SaleFrag(Context context, AttributeSet attrs) {
@@ -95,6 +97,7 @@ public class SaleFrag extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
+        Log.d("", "onClick: ");
         Resources resources = context.getResources();
         Drawable drawable = resources.getDrawable(R.drawable.mask);
         selLayout.setForeground(drawable);

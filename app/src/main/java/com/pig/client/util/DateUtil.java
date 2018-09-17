@@ -9,7 +9,7 @@ import java.util.Date;
 public class DateUtil {
     private static final String TAG = "DateUtil";
 
-   public static Date StringToDate(String s){
+   public static Date stringToDate(String s){
         java.text.SimpleDateFormat   formatter   =
                 new SimpleDateFormat( "yyyy-MM-dd ");
        Date date   = null;
@@ -21,10 +21,24 @@ public class DateUtil {
        }
        return  date;
     }
- public  static  String DateToString(Date date){
+ public  static  String dateToString(Date date){
      java.text.SimpleDateFormat   formatter   =
              new   SimpleDateFormat( "yyyy-MM-dd ");
-     String s = formatter.format(new Date());//格式化数据
+     String s = formatter.format(date);//格式化数据
      return  s;
  }
+public  static  Date longToDate(long l){
+//    Date date = java.sql.Date.valueOf(long);//Long-->Date
+    Date date = new Date(l);//Long-->Date（常用）
+    return date;
+}
+ public  static String longToString(long l){
+     Date date = new Date(l);//Long-->Date（常用）
+     java.text.SimpleDateFormat   formatter   =
+             new   SimpleDateFormat( "yyyy-MM-dd ");
+     String s = formatter.format(date);//格式化数据
+     return  s;
+ }
+
+
 }

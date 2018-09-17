@@ -33,6 +33,7 @@ import android.widget.TextView;
 
 import com.pig.client.R;
 import com.pig.client.activity.BoarAddActivity;
+import com.pig.client.pojo.BreedingPig;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -58,6 +59,12 @@ public class EliminateFrag extends Fragment implements View.OnClickListener{
     private Button resetBtn;
     private FrameLayout selLayout ;
     private Activity activity;
+    private BreedingPig breedingPig;
+
+    public EliminateFrag(Context context, BreedingPig breedingPig) {
+        this.context = context;
+        this.breedingPig = breedingPig;
+    }
 
     public EliminateFrag(Context context) {
         this.context = context;

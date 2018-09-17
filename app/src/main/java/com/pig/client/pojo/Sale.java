@@ -1,6 +1,8 @@
 package com.pig.client.pojo;
 
-public class PigSale {
+public class Sale {
+    private Integer id;
+
     private String pigstyMessage;
 
     private Integer earlabel;
@@ -19,7 +21,15 @@ public class PigSale {
 
     private String customerTel;
 
-    private String salesDate;
+    private Long salesDate;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getPigstyMessage() {
         return pigstyMessage;
@@ -93,11 +103,11 @@ public class PigSale {
         this.customerTel = customerTel == null ? null : customerTel.trim();
     }
 
-    public String getSalesDate() {
+    public Long getSalesDate() {
         return salesDate;
     }
 
-    public void setSalesDate(String salesDate) {
-        this.salesDate = salesDate == null ? null : salesDate.trim();
+    public void setSalesDate(Long salesDate) {
+        this.salesDate = salesDate;
     }
 }

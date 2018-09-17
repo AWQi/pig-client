@@ -3,6 +3,7 @@ package com.pig.client.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,11 +13,22 @@ import android.widget.TextView;
 
 import com.pig.client.R;
 import com.pig.client.activity.BoarOperaActivity;
+import com.pig.client.pojo.BreedingPig;
+import com.pig.client.util.DateUtil;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Handler;
 
 public class BoarAdapter extends RecyclerView.Adapter {
-
+    private List<BreedingPig> list = new ArrayList<>();
     private Context context;
     public BoarAdapter(Context context) {
+        this.context = context;
+    }
+
+    public BoarAdapter(List<BreedingPig> list, Context context) {
+        this.list = list;
         this.context = context;
     }
 
@@ -28,22 +40,25 @@ public class BoarAdapter extends RecyclerView.Adapter {
             return holder;
         }
 
-
-
         @Override
-        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+        public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, final int i) {
             BoarHolder holder = (BoarHolder) viewHolder;
-            holder.earlabelTV.setText("asa");
-            holder.typeTV.setText("asa");
-            holder.pigstyTV.setText("asa");
-            holder.birthdayTV.setText("asa");
-            holder.varietyTV.setText("asa");
-            holder.stateTV.setText("asa");
-            holder.entergroupdayTV.setText("asa");
+            BreedingPig breedingPig = list.get(i);
+            holder.earlabelTV.setText(String.valueOf(breedingPig.getEarlabel()));
+            holder.typeTV.setText(breedingPig.getPigType());
+            holder.pigstyTV.setText(String.valueOf(breedingPig.getPigstyMessage()));
+
+            holder.birthdayTV.setText(DateUtil.longToString(breedingPig.getBirthdate()));
+            holder.varietyTV.setText(breedingPig.getPigVariety());
+            holder.stateTV.setText(breedingPig.getPigState());
+            holder.entergroupdayTV.setText(DateUtil.longToString(breedingPig.getEntergroupDate()));
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent t = new Intent(context, BoarOperaActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelable("BreedingPig",list.get(i));
+                    t.putExtras(bundle);
                     context.startActivity(t);
                 }
             });
