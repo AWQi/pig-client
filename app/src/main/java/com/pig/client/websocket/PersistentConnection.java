@@ -18,6 +18,8 @@ import java.net.URI;
 
 public class PersistentConnection{
     private static final String TAG = "PersistentConnection";
+//    public static final String WEBSOCKET_ARRD = "ws://10.155.26.107:8887";
+//    public static final String WEBSOCKET_ARRD = "ws://192.168.137.1:8887";
     public static final String WEBSOCKET_ARRD = "ws://10.0.2.2:8887";
     private static PersistentConnection mInstance;
     private ReconnectingWSClient mSocketClient;

@@ -4,21 +4,29 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class BreedingPig  implements Parcelable {
-    private Integer earlabel;
+    private Integer id;
+
+    private String earlabel;
+
     private Integer pigstyMessage;
+
     private String pigVariety;
+
     private String pigType;
+
     private Long birthdate;
+
     private Long entergroupDate;
 
     private String pigState;
+
     private Integer gender;
 
-    public Integer getEarlabel() {
+    public String getEarlabel() {
         return earlabel;
     }
 
-    public void setEarlabel(Integer earlabel) {
+    public void setEarlabel(String earlabel) {
         this.earlabel = earlabel;
     }
 
@@ -82,7 +90,8 @@ public class BreedingPig  implements Parcelable {
     }
 
     public BreedingPig(Parcel in) {
-        earlabel = in.readInt();
+        id = in.readInt();
+        earlabel = in.readString();
         pigstyMessage = in.readInt();
         pigVariety = in.readString();
         pigType = in.readString();
@@ -99,7 +108,8 @@ public class BreedingPig  implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(earlabel);
+        dest.writeInt(id);
+        dest.writeString(earlabel);
         dest.writeInt(pigstyMessage);
         dest.writeString(pigVariety);
         dest.writeString(pigType);
