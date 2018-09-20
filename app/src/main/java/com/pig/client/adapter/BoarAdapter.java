@@ -31,7 +31,12 @@ public class BoarAdapter extends RecyclerView.Adapter {
         this.list = list;
         this.context = context;
     }
+    public void refresh(List list){
+        this.list.clear();
+        this.list.addAll(list);
+        this.notifyDataSetChanged();
 
+    }
     @NonNull
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -65,7 +70,7 @@ public class BoarAdapter extends RecyclerView.Adapter {
         }
         @Override
         public int getItemCount() {
-            return 5;
+            return list.size();
         }
         class  BoarHolder extends RecyclerView.ViewHolder{
             public View view = null;

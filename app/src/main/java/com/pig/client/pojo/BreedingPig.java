@@ -22,6 +22,10 @@ public class BreedingPig  implements Parcelable {
 
     private Integer gender;
 
+    public Integer getId() {
+        return id;
+    }
+
     public String getEarlabel() {
         return earlabel;
     }

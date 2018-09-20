@@ -27,7 +27,6 @@ private Activity activity = this;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pigsty);
-        PersistentConnection.getInstance().init(PigstyActivity.this);
 
         titleBar = findViewById(R.id.titleBar);
         titleBar.setTitle("存栏信息");

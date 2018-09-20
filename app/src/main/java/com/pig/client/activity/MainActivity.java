@@ -10,11 +10,15 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.SurfaceView;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.pig.client.R;
 import com.pig.client.adapter.MainCardRVAdapter;
+import com.pig.client.util.ApplicationUtil;
+import com.pig.client.util.NotificationUtil;
+import com.pig.client.websocket.PersistentConnection;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -32,12 +36,14 @@ private ImageView fgIV;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        PersistentConnection.getInstance().init(this);
 
         mainCardRV = findViewById(R.id.mainCardRV);
         GridLayoutManager layoutManager  = new GridLayoutManager(MainActivity.this,2);
         mainCardRV.setLayoutManager(layoutManager);
         mainCardRV.setAdapter(new MainCardRVAdapter(MainActivity.this));
         mainCardRV.addItemDecoration(new DividerItemDecoration(MainActivity.this,DividerItemDecoration.VERTICAL));
+
 
 
          fgIV = findViewById(R.id.fgIV);

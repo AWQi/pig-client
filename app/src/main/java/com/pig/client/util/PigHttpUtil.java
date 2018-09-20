@@ -38,6 +38,9 @@ public class PigHttpUtil {
     private static final String TAG = "PigHttpUtil";
 
 
+
+
+
     static  public final Type BREED_LIST_TYPE = new TypeToken<PigResult.PigList<BreedingPig>>() {}.getType();
     static  final private  String BREED_PIG_QUERY_ALL =  "http://"+HOST+"/BreedingPig/queryAll";
     static public  void  queryAllBreed(PigHttpCallBack pigHttpCallBack){

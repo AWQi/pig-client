@@ -1,7 +1,11 @@
 package com.pig.client.websocket;
 
 
+import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -9,11 +13,13 @@ import android.widget.Toast;
 import com.pig.client.util.ApplicationUtil;
 import com.pig.client.util.JsonUtil;
 import com.pig.client.util.MacAddressUtil;
+import com.pig.client.util.NotificationUtil;
 
 import org.java_websocket.drafts.Draft_17;
 import org.java_websocket.handshake.ServerHandshake;
 
 import java.net.URI;
+import java.util.logging.LogRecord;
 
 
 public class PersistentConnection{
@@ -23,7 +29,7 @@ public class PersistentConnection{
     public static final String WEBSOCKET_ARRD = "ws://10.0.2.2:8887";
     private static PersistentConnection mInstance;
     private ReconnectingWSClient mSocketClient;
-
+    static  public   Handler handler;
 
     public static PersistentConnection getInstance() {
         if (mInstance == null) {
@@ -41,8 +47,9 @@ public class PersistentConnection{
     }
 
 
-    public void init(final Context context)
+    public void init(final Activity activity)
     {
+       handler = new Handler();
 
         try {
 
@@ -65,82 +72,36 @@ public class PersistentConnection{
                 }
 
                 @Override
-                public void onMessageEvent(String message) {
-                    Log.d(TAG, "接收消息------------------------------: "+message);
-                    ClientMsg msg = JsonUtil.StrToObj(message,ClientMsg.class);
-                    if (msg.getEventType().equals("online")){
-                        Toast.makeText(context,msg.msg,Toast.LENGTH_SHORT).show();
-                        Log.d(TAG, "onMessageEvent: ");
+                public void onMessageEvent(String messageStr) {
+                    Log.d(TAG, "接收消息------------------------------: "+messageStr);
+                    ClientMsg message = JsonUtil.StrToObj(messageStr,ClientMsg.class);
+                    switch (message.getEventType()){
+                        case ClientMsg.EVENT_ONLINE:
+                                activity.runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(ApplicationUtil.getContext(),"设备已上线",Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                                break;
+                        case ClientMsg.EVENT_RFID:
+//                            NotificationUtil.sendNotification(ApplicationUtil.getContext());
+                            if (ApplicationUtil.getTopActivity(ApplicationUtil.getContext())
+                                    .equals("com.pig.client.activity.BoarActivity")){
+                                Message m1 = new Message();
+                                m1.what = 1;
+                                Bundle b1 = new Bundle();
+                                b1.putString("earlabel",message.getMsg());
+                                m1.setData(b1);
+                                handler.sendMessage(m1);
+                            }
+                            break;
                     }
 
                 }
             };
-
-
-            /*mSocketClient = new WebSocketClient(new URI(DomainDefine.WEBSOCKET_ARRD), new Draft_17()) {
-                @Override
-                public void onOpen(ServerHandshake handshakedata) {
-                    Log.d("picher_log", "打开通道" + handshakedata.getHttpStatus());
-                    //handler.obtainMessage(0, message).sendToTarget();
-                    mSocketClient.send("online001");
-                }
-
-                @Override
-                public void onMessage(String message) {
-
-
-                    Log.d("picher_log", "接收消息" + message);
-
-                    if(message.startsWith("eventcode"))
-                    {
-                        String[] strSplit = message.split("eventcode");
-
-                        Log.d("DEMO",strSplit[1]);
-
-                        Bundle bundle = new Bundle();
-                        bundle.putInt("intvalue",Integer.valueOf(strSplit[1]));
-                        VMessageDispatcher.getInstance().dispatchMessage(RobotConst.COMMON_CODE,bundle);
-                    }
-                    else {
-
-
-                        if (TextUtils.equals(message, "今天过来路上堵吗") || TextUtils.equals(message, "您是第几次来我们公司啊")) {
-                            AIEngine.getInstance().processTTS(message);
-                            AIEngine.getInstance().setCallback(internalCallback);
-                        } else {
-                            AIEngine.getInstance().processTTS(message);
-                            AIEngine.getInstance().setCallback(null);
-                        }
-                    }
-
-
-                            *//*Message msg = Message.obtain();
-                            msg.what = ON_MSG_RECEIVED;
-                            String strMsg ="接收消息" + message;
-                            msg.obj = strMsg;
-                            mHandler.sendMessage(msg);*//*
-                    //handler.obtainMessage(0, message).sendToTarget();
-                }
-
-                @Override
-                public void onClose(int code, String reason, boolean remote) {
-                    Log.d("picher_log", "通道关闭");
-                    //handler.obtainMessage(0, message).sendToTarget();
-                }
-
-                @Override
-                public void onError(Exception ex) {
-                    Log.d("picher_log", "链接错误");
-                    //长连接，连接异常重连
-                    //mSocketClient.connect();
-
-                }
-            };*/
             mSocketClient.connect();
-        }catch (Exception e)
-        {
-            //
-        }
+        }catch (Exception e) { }
 
     }
 
