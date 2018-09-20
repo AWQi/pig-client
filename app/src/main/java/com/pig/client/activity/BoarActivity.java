@@ -93,6 +93,7 @@ public class BoarActivity extends AppCompatActivity {
         });
         searchView = findViewById(R.id.boarSearch);
         searchView.setIconifiedByDefault(false);
+
         selIV = findViewById(R.id.selIV);
         selIV.setOnClickListener(new View.OnClickListener() {
             @Override
