@@ -7,6 +7,7 @@ public class BreedingPig  implements Parcelable {
     private Integer earlabel;
 
     private Integer pigstyMessage;
+    private String 	pigstyName;
 
     private String pigVariety;
 
@@ -80,6 +81,7 @@ public class BreedingPig  implements Parcelable {
     public BreedingPig(Parcel in) {
        earlabel =  in.readInt();
         pigstyMessage = in.readInt();
+        pigstyName = in.readString();
         pigVariety = in.readString();
         pigVariety = in.readString();
         birthdate = in.readLong();
@@ -96,6 +98,7 @@ public class BreedingPig  implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
            dest.writeInt(earlabel);
            dest.writeInt(pigstyMessage);
+           dest.writeString(pigstyName);
            dest.writeString(pigVariety);
            dest.writeLong(birthdate);
            dest.writeLong(entergroupDate);

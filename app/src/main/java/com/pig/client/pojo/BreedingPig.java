@@ -10,6 +10,23 @@ public class BreedingPig  implements Parcelable {
 
     private Integer pigstyMessage;
 
+    public String getPigstyName() {
+        return pigstyName;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setPigstyName(String pigstyName) {
+        this.pigstyName = pigstyName;
+    }
+
+    public void setGender(Integer gender) {
+        this.gender = gender;
+    }
+
+    private  String pigstyName;
     private String pigVariety;
 
     private String pigType;
@@ -97,6 +114,7 @@ public class BreedingPig  implements Parcelable {
         id = in.readInt();
         earlabel = in.readString();
         pigstyMessage = in.readInt();
+        pigstyName = in.readString();
         pigVariety = in.readString();
         pigType = in.readString();
         birthdate = in.readLong();
@@ -115,6 +133,7 @@ public class BreedingPig  implements Parcelable {
         dest.writeInt(id);
         dest.writeString(earlabel);
         dest.writeInt(pigstyMessage);
+        dest.writeString(pigstyName);
         dest.writeString(pigVariety);
         dest.writeString(pigType);
         dest.writeLong(birthdate);

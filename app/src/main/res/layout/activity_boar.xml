@@ -24,21 +24,25 @@
 
         <ImageView
             android:id="@+id/selIV"
-            android:src="@drawable/warning"
+            android:src="@drawable/btnup"
+            android:layout_margin="5dp"
             android:layout_width="40dp"
             android:layout_height="40dp" />
-        <SearchView
+        <EditText
             android:background="@drawable/flowborder"
             android:id="@+id/boarSearch"
+            android:imeOptions="actionSearch"
             android:autofillHints="请输入关键字"
+            android:singleLine="true"
+            android:layout_marginTop="5dp"
             android:layout_width="295dp"
             android:layout_height="40dp">
 
-        </SearchView>
+        </EditText>
 
         <ImageView
             android:id="@+id/refreshIV"
-            android:layout_marginLeft="5dp"
+            android:layout_margin="5dp"
             android:src="@drawable/refresh"
             android:layout_gravity="center_vertical"
             android:layout_width="40dp"

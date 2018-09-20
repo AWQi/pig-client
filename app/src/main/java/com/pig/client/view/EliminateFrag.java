@@ -120,7 +120,7 @@ public class EliminateFrag extends Fragment implements View.OnClickListener{
         if (breedingPig!=null){
             earlabelTV.setText(String.valueOf(breedingPig.getEarlabel()));
             pigTypeTV.setText(breedingPig.getPigType());
-            pigstyTV.setText(String.valueOf(breedingPig.getPigstyMessage()));
+            pigstyTV.setText(breedingPig.getPigstyName());
             eliminateStageTV.setText(breedingPig.getPigState());
         }
         if (commercialPig!=null){

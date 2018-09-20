@@ -13,12 +13,16 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.pig.client.R;
 import com.pig.client.adapter.BoarAdapter;
@@ -36,7 +40,7 @@ import java.util.List;
 
 public class BoarActivity extends AppCompatActivity {
     private static final String TAG = "BoarActivity";
-    private SearchView searchView = null;
+    private EditText searchView = null;
     private TitleBar titleBar = null;
     private ImageView refreshIV ;
     private ImageView selIV;
@@ -92,17 +96,39 @@ public class BoarActivity extends AppCompatActivity {
             }
         });
         searchView = findViewById(R.id.boarSearch);
-        searchView.setIconifiedByDefault(false);
+//        searchView.setIconifiedByDefault(false);
+        searchView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        thisPig.clear();
+//                Log.d(TAG, "onTextChanged:---- "+s.toString());
+                        for (BreedingPig b:list){
+                            if (b.getEarlabel().matches("(.*)"+s.toString()+"(.*)")){
+                                thisPig.add(b);
+                            }
+                        }
+                        boarRV.swapAdapter(new BoarAdapter(thisPig,BoarActivity.this),true);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         selIV = findViewById(R.id.selIV);
         selIV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 isSel = !isSel;
                 if (isSel){
-
+                    Toast.makeText(BoarActivity.this,"开始筛选",Toast.LENGTH_SHORT).show();
                 }else {
-
+                    Toast.makeText(BoarActivity.this,"关闭筛选",Toast.LENGTH_SHORT).show();
                 }
             }
         });

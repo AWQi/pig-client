@@ -73,7 +73,7 @@ public class PersistentConnection{
 
                 @Override
                 public void onMessageEvent(String messageStr) {
-                    Log.d(TAG, "接收消息------------------------------: "+messageStr);
+//                    Log.d(TAG, "接收消息------------------------------: "+messageStr);
                     ClientMsg message = JsonUtil.StrToObj(messageStr,ClientMsg.class);
                     switch (message.getEventType()){
                         case ClientMsg.EVENT_ONLINE:
@@ -94,6 +94,17 @@ public class PersistentConnection{
                                 b1.putString("earlabel",message.getMsg());
                                 m1.setData(b1);
                                 handler.sendMessage(m1);
+                            }
+                            break;
+                        case ClientMsg.EVENT_ZIGBEE:
+                            if (ApplicationUtil.getTopActivity(ApplicationUtil.getContext())
+                                    .equals("com.pig.client.activity.PigstyActivity")){
+                                Message m2 = new Message();
+                                m2.what = 2;
+                                Bundle b1 = new Bundle();
+                                b1.putString("date",message.getMsg());
+                                m2.setData(b1);
+                                handler.sendMessage(m2);
                             }
                             break;
                     }

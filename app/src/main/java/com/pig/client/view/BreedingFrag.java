@@ -67,7 +67,7 @@ private EditText addDescribeET;
 private Activity activity;
 private BreedingPig breedingPig;
 private Fragment fragment  = this;
-
+private LinearLayout breedingLL;
     public BreedingFrag(Context context, BreedingPig breedingPig) {
         this.context = context;
         this.breedingPig = breedingPig;
@@ -108,7 +108,7 @@ private Fragment fragment  = this;
         resetBtn = activity.findViewById(R.id.resetBtn);
         selLayout = activity.findViewById(R.id.selLayout);
         addDescribeET = activity.findViewById(R.id.addDescribeET);
-
+        breedingLL = activity.findViewById(R.id.breedingLL);
         if (breedingPig.getGender()==0){ //母
             femaleBreedTV.setText(String.valueOf(breedingPig.getEarlabel()));
             femaleBreedTV.setFocusable(View.NOT_FOCUSABLE);

@@ -5,13 +5,15 @@ public class Pigsty {
 
     private String name;
 
-    private Integer temperature;
+    private Float temperature;
 
-    private Integer humidity;
+    private Float humidity;
 
-    private Integer illumination;
+    private Float illumination;
 
     private String pigType;
+
+    private String address;
 
     public Integer getId() {
         return id;
@@ -29,27 +31,27 @@ public class Pigsty {
         this.name = name == null ? null : name.trim();
     }
 
-    public Integer getTemperature() {
+    public Float getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(Integer temperature) {
+    public void setTemperature(Float temperature) {
         this.temperature = temperature;
     }
 
-    public Integer getHumidity() {
+    public Float getHumidity() {
         return humidity;
     }
 
-    public void setHumidity(Integer humidity) {
+    public void setHumidity(Float humidity) {
         this.humidity = humidity;
     }
 
-    public Integer getIllumination() {
+    public Float getIllumination() {
         return illumination;
     }
 
-    public void setIllumination(Integer illumination) {
+    public void setIllumination(Float illumination) {
         this.illumination = illumination;
     }
 
@@ -59,5 +61,13 @@ public class Pigsty {
 
     public void setPigType(String pigType) {
         this.pigType = pigType == null ? null : pigType.trim();
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address == null ? null : address.trim();
     }
 }
