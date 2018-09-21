@@ -37,6 +37,7 @@ public class BoarAdapter extends RecyclerView.Adapter {
         this.notifyDataSetChanged();
 
     }
+
     @NonNull
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {

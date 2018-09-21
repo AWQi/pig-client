@@ -73,7 +73,7 @@ public class PersistentConnection{
 
                 @Override
                 public void onMessageEvent(String messageStr) {
-//                    Log.d(TAG, "接收消息------------------------------: "+messageStr);
+                    Log.d(TAG, "接收消息------------------------------: "+messageStr);
                     ClientMsg message = JsonUtil.StrToObj(messageStr,ClientMsg.class);
                     switch (message.getEventType()){
                         case ClientMsg.EVENT_ONLINE:

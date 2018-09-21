@@ -33,6 +33,7 @@ private RecyclerView pigstyRV;
 private TextView totalTV;
 private Activity activity = this;
 private  List<Pigsty> list = new ArrayList<>();
+private  GuardilAdapter adapter  ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +58,7 @@ private  List<Pigsty> list = new ArrayList<>();
                                 list = pigList.getData();
                                 GridLayoutManager layoutManager = new GridLayoutManager(PigstyActivity.this,2);
                                 pigstyRV.setLayoutManager(layoutManager);
-                                GuardilAdapter adapter = new GuardilAdapter(PigstyActivity.this,list);
+                                 adapter = new GuardilAdapter(PigstyActivity.this,list);
                                 pigstyRV.setAdapter(adapter);
 
                             }
@@ -77,16 +78,17 @@ private  List<Pigsty> list = new ArrayList<>();
                             Bundle bundle = msg.getData();
                             String date =  bundle.getString("date");
                            ZigbeeDate zigbeeDate = JsonUtil.StrToObj(date,ZigbeeDate.class);
-                            for (Pigsty p :list){
-                                if (p.getAddress().equals(zigbeeDate.address)){
+                            for (int i  =0 ;i<list.size();i++){
+                                if (list.get(i).getAddress().equals(zigbeeDate.address)){
                                     if (zigbeeDate.type.equals("01")){
                                         Log.d(TAG, "温度-------------: "+zigbeeDate.date);
-                                        p.setTemperature(zigbeeDate.date);
-                                        pigstyRV.getAdapter().notifyDataSetChanged();
+                                        list.get(i).setTemperature(zigbeeDate.date);
+                                        pigstyRV.getAdapter().notifyItemChanged(i);
+
                                     }else if(zigbeeDate.type.equals("02")) {
                                         Log.d(TAG, "湿度: "+zigbeeDate.date);
-                                        p.setHumidity(zigbeeDate.date);
-                                        pigstyRV.getAdapter().notifyDataSetChanged();
+                                        list.get(i).setHumidity(zigbeeDate.date);
+                                        pigstyRV.getAdapter().notifyItemChanged(i);
                                     }
                                 }
                             }
