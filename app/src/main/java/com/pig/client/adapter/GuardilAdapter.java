@@ -1,6 +1,7 @@
 package com.pig.client.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -61,29 +62,26 @@ public class GuardilAdapter extends RecyclerView.Adapter{
             holder.humidityTV.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
                 }
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    AnimationUtil.startOnClickAnimation(holder.humidityTV);
+                    AnimationUtil.startTextViewAnimation(holder.humidityTV);
                 }
 
                 @Override
                 public void afterTextChanged(Editable s) {
-
                 }
             });
             holder.temperatureTV.setText(String.valueOf(pigsty.getTemperature()));
             holder.temperatureTV.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
                 }
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    AnimationUtil.startOnClickAnimation(holder.temperatureTV);
+                    AnimationUtil.startTextViewAnimation(holder.temperatureTV);
 
                 }
 
