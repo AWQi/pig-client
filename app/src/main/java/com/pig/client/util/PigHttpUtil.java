@@ -10,10 +10,12 @@ import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.pig.client.pojo.Breeder;
 import com.pig.client.pojo.BreedingPig;
+import com.pig.client.pojo.CommercialPig;
 import com.pig.client.pojo.Pigsty;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.security.PrivateKey;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +39,8 @@ public class PigHttpUtil {
     static  final  public  int NETWORK_FAIL = 111;
     private static final String TAG = "PigHttpUtil";
 
+    static  public  final  Type STRING_TYPE = new TypeToken<PigResult.PigObj<String>>(){}.getType();
+
 
 
 
@@ -45,6 +49,12 @@ public class PigHttpUtil {
     static  final private  String BREED_PIG_QUERY_ALL =  "http://"+HOST+"/BreedingPig/queryAll";
     static public  void  queryAllBreed(PigHttpCallBack pigHttpCallBack){
         pigPostHttp(BREED_PIG_QUERY_ALL,null,null,null,pigHttpCallBack);
+    }
+
+    static  public final Type COMMERICAL_LIST_TYPE = new TypeToken<PigResult.PigList<CommercialPig>>() {}.getType();
+    static  final private  String COMMERCIAL_PIG_QUERY_ALL =  "http://"+HOST+"/CommecialPig/queryAll";
+    static public  void  queryAllCommerical(PigHttpCallBack pigHttpCallBack){
+        pigPostHttp(COMMERCIAL_PIG_QUERY_ALL,null,null,null,pigHttpCallBack);
     }
 
     static public  final  Type PIGSTY_LIST_TYPE = new TypeToken<PigResult.PigList<Pigsty>>() {}.getType();
@@ -59,6 +69,10 @@ public class PigHttpUtil {
         pigPostHttp(BREEDER_QUERY_ALL,null,null,null,pigHttpCallBack);
     }
 
+    static  final private  String  ADD_BREEDING  = "http://"+HOST+"/BreedingPig/add";
+    static public void  addBreeding(BreedingPig breedingPig,PigHttpCallBack pigHttpCallBack){
+        pigPostHttp(ADD_BREEDING,JsonUtil.ObjToStr(breedingPig),null,null,pigHttpCallBack);
+    }
 
 //    static Handler handler = new Handler(){
 //        @Override

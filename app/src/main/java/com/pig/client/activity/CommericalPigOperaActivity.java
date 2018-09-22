@@ -1,5 +1,6 @@
 package com.pig.client.activity;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,8 @@ import android.view.MenuItem;
 
 import com.pig.client.R;
 import com.pig.client.adapter.VpAdapter;
+import com.pig.client.pojo.BreedingPig;
+import com.pig.client.pojo.CommercialPig;
 import com.pig.client.view.BreedingFrag;
 import com.pig.client.view.EliminateFrag;
 import com.pig.client.view.PigstyChangeFrag;
@@ -34,10 +37,14 @@ public class CommericalPigOperaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_commerical_pig_opera);
 
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        CommercialPig commercialPig =  bundle.getParcelable("CommericalPig");
+
         commercialOperaVP  = findViewById(R.id.commercialOperaVP);
-        eliminateFrag = new EliminateFrag(CommericalPigOperaActivity.this);
-        pigstyChangeFrag = new PigstyChangeFrag(CommericalPigOperaActivity.this);
-        saleFrag = new SaleFrag(CommericalPigOperaActivity.this);
+        eliminateFrag = new EliminateFrag(CommericalPigOperaActivity.this,commercialPig);
+        pigstyChangeFrag = new PigstyChangeFrag(CommericalPigOperaActivity.this,commercialPig);
+        saleFrag = new SaleFrag(CommericalPigOperaActivity.this,commercialPig);
 
         /**
          *    顺序与bottom  menu 对应
@@ -45,8 +52,6 @@ public class CommericalPigOperaActivity extends AppCompatActivity {
         fragmentList.add(saleFrag);
         fragmentList.add(eliminateFrag);
         fragmentList.add(pigstyChangeFrag);
-
-
         VpAdapter adapter = new VpAdapter(getSupportFragmentManager(),fragmentList);
         commercialOperaVP.setAdapter(adapter);
         commercialOperaVP.setOffscreenPageLimit(2); //预加载剩下两页

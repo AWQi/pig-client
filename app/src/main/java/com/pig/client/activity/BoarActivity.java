@@ -72,19 +72,38 @@ public class BoarActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 //  do  something
-                                layout.getEarlabel();
-                                layout.getPigsty();
-                                layout.getVariety();
-                                layout.getState();
-                                layout.getBirthDay();
-                                layout.getEntergroupday();
-
                             }
                         })
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 //  do   something
+                           final BreedingPig breedingPig = new BreedingPig();
+                           breedingPig.setEarlabel(layout.getEarlabel());
+                           breedingPig.setPigstyMessage( layout.getPigsty());
+                           breedingPig.setPigVariety( layout.getVariety());
+                           breedingPig.setPigState( layout.getState());
+                           breedingPig.setBirthdate(layout.getBirthDay());
+                           breedingPig.setEntergroupDate( layout.getEntergroupday());
+                           breedingPig.setGender(layout.getGender());
+
+                           new Thread(new Runnable() {
+                               @Override
+                               public void run() {
+                                   PigHttpUtil.addBreeding(breedingPig, new PigHttpUtil.PigObjCallBack(PigHttpUtil.STRING_TYPE) {
+                                       @Override
+                                       public void analyticData(final PigResult.PigObj pigObj) {
+                                           activity.runOnUiThread(new Runnable() {
+                                               @Override
+                                               public void run() {
+                                                   Toast.makeText(BoarActivity.this,"添加成功",Toast.LENGTH_SHORT).show();
+                                               }
+                                           });
+                                       }
+                                   });
+                               }
+                           }).start();
+                                Log.d(TAG, "add: ");
                             }
                         })
                         .setView(layout)
@@ -127,8 +146,10 @@ public class BoarActivity extends AppCompatActivity {
                 isSel = !isSel;
                 if (isSel){
                     Toast.makeText(BoarActivity.this,"开始筛选",Toast.LENGTH_SHORT).show();
+                    selIV.setImageResource(R.drawable.btndown);
                 }else {
                     Toast.makeText(BoarActivity.this,"关闭筛选",Toast.LENGTH_SHORT).show();
+                    selIV.setImageResource(R.drawable.btnup);
                 }
             }
         });

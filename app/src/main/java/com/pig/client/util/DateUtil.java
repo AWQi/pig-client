@@ -40,5 +40,18 @@ public  static  Date longToDate(long l){
      return  s;
  }
 
+    public  static long stringToLong(String s){
+        java.text.SimpleDateFormat   formatter   =
+                new SimpleDateFormat( "yyyy-MM-dd");
+        Date date   = null;
+        try {
+            date = formatter.parse(s);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            Log.d(TAG, "DateStringToDate: "+e.getMessage());
+        }
+        return  date.getTime();
+
+    }
 
 }

@@ -52,6 +52,6 @@ public class XMLUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+        return new ArrayList<String>();
     }
 }

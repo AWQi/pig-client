@@ -67,7 +67,7 @@ private EditText addDescribeET;
 private Activity activity;
 private BreedingPig breedingPig;
 private Fragment fragment  = this;
-private LinearLayout breedingLL;
+private RelativeLayout breedingLL;
     public BreedingFrag(Context context, BreedingPig breedingPig) {
         this.context = context;
         this.breedingPig = breedingPig;

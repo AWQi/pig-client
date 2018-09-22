@@ -1,5 +1,6 @@
 package com.pig.client.view;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
@@ -40,6 +41,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+@SuppressLint("ValidFragment")
 public class EliminateFrag extends Fragment implements View.OnClickListener{
     private Context context;
     private List<String> eliminateTypeList = new ArrayList();
@@ -66,11 +68,14 @@ public class EliminateFrag extends Fragment implements View.OnClickListener{
     public EliminateFrag(Context context, BreedingPig breedingPig) {
         this.context = context;
         this.breedingPig = breedingPig;
+        this.commercialPig=null;
     }
 
     public EliminateFrag(Context context, CommercialPig commercialPig) {
         this.context = context;
         this.commercialPig = commercialPig;
+        this.breedingPig = null;
+
     }
 
     public EliminateFrag(Context context) {
@@ -90,8 +95,7 @@ public class EliminateFrag extends Fragment implements View.OnClickListener{
         activity = getActivity();
         init();
     }
-
-//    public EliminateFrag(Context context, AttributeSet attrs) {
+    //    public EliminateFrag(Context context, AttributeSet attrs) {
 //        super(context, attrs);
 //        this.context = context;
 //        RelativeLayout.inflate(context, R.layout.eliminate_frag,this);
@@ -118,17 +122,19 @@ public class EliminateFrag extends Fragment implements View.OnClickListener{
 
 
         if (breedingPig!=null){
-            earlabelTV.setText(String.valueOf(breedingPig.getEarlabel()));
+            earlabelTV.setText(breedingPig.getEarlabel());
             pigTypeTV.setText(breedingPig.getPigType());
             pigstyTV.setText(breedingPig.getPigstyName());
             eliminateStageTV.setText(breedingPig.getPigState());
         }
         if (commercialPig!=null){
-            earlabelTV.setText(String.valueOf(commercialPig.getEarlabel()));
+            earlabelTV.setText(commercialPig.getEarlabel());
             pigTypeTV.setText(commercialPig.getPigType());
-            pigstyTV.setText(String.valueOf(commercialPig.getPigstyMessage()));
+            pigstyTV.setText(commercialPig.getPigstyName());
 //            eliminateStageTV.setText(breedingPig.get);
         }
+
+        earlabelTV.requestLayout();
 
 
         setListViewBasedOnChildren(eliminateLV);

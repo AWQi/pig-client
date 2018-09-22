@@ -34,6 +34,7 @@ import android.widget.TextView;
 
 import com.pig.client.R;
 import com.pig.client.activity.BoarAddActivity;
+import com.pig.client.pojo.CommercialPig;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -57,9 +58,14 @@ public class SaleFrag extends Fragment implements View.OnClickListener{
     private Button resetBtn;
     private FrameLayout selLayout ;
     private Activity activity;
+    private CommercialPig commercialPig;
 
-    public SaleFrag(Context context) {
+    public SaleFrag() {
+    }
+
+    public SaleFrag(Context context,CommercialPig commercialPig) {
         this.context = context;
+        this.commercialPig = commercialPig;
     }
 
     @Nullable
@@ -76,7 +82,15 @@ public class SaleFrag extends Fragment implements View.OnClickListener{
         init();
     }
 
-//    public SaleFrag(Context context, AttributeSet attrs) {
+    @Override
+    public void onResume() {
+        super.onResume();
+        earlabelTV.setText(commercialPig.getEarlabel());
+        pigstyTV.setText(commercialPig.getPigstyName());
+        pigTypeTV.setText(commercialPig.getPigType());
+    }
+
+    //    public SaleFrag(Context context, AttributeSet attrs) {
 //        super(context, attrs);
 //        this.context = context;
 //        RelativeLayout.inflate(context, R.layout.sale_frag,this);
@@ -91,6 +105,8 @@ public class SaleFrag extends Fragment implements View.OnClickListener{
         totalWeightET = activity.findViewById(R.id.totalWeightET);
         salesDateTV = activity.findViewById(R.id.salesDateTV);
         selLayout = activity.findViewById(R.id.selLayout);
+
+
 
         salesDateTV.setOnClickListener(this);
     }

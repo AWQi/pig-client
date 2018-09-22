@@ -46,7 +46,9 @@ public class PersistentConnection{
         //
     }
 
-
+    public  void  sendMessage(ClientMsg msg){
+        mSocketClient.send(JsonUtil.ObjToStr(msg));
+    }
     public void init(final Activity activity)
     {
        handler = new Handler();
