@@ -34,7 +34,6 @@ import com.pig.client.util.PigResult;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-@SuppressLint("ValidFragment")
 public class PigstyChangeFrag extends Fragment implements View.OnClickListener{
     private Context context;
     private List<Pigsty> pigstyList = new ArrayList();
@@ -52,28 +51,50 @@ public class PigstyChangeFrag extends Fragment implements View.OnClickListener{
     private Activity activity;
     private BreedingPig breedingPig = null;
     private CommercialPig commercialPig = null;
-
+    private  Bundle bundle;
     public PigstyChangeFrag() {
+
     }
 
-    public PigstyChangeFrag(Context context, BreedingPig breedingPig) {
-        this.context = context;
-        this.breedingPig = breedingPig;
-    }
-
-    public PigstyChangeFrag(Context context, CommercialPig commercialPig) {
-        this.context = context;
-        this.commercialPig = commercialPig;
-    }
-
-    public PigstyChangeFrag(Context context) {
-        this.context = context;
-    }
+//    public PigstyChangeFrag(Context context, BreedingPig breedingPig) {
+//        this.context = context;
+//        this.breedingPig = breedingPig;
+//    }
+//
+//    public PigstyChangeFrag(Context context, CommercialPig commercialPig) {
+//        this.context = context;
+//        this.commercialPig = commercialPig;
+//    }
+//
+//    public PigstyChangeFrag(Context context) {
+//        this.context = context;
+//    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Bundle bundle = getArguments();
+
+        breedingPig =  bundle.getParcelable("BreedingPig");
+        commercialPig = bundle.getParcelable("CommericalPig");
         View rootView = inflater.inflate(R.layout.pigsty_change_frag,container,false);
+        earlabelTV = rootView.findViewById(R.id.earlabelTV);
+        pigstyTV = rootView.findViewById(R.id.pigstyTV);
+        changeTypeTV = rootView.findViewById(R.id.changeTypeTV);
+        desPigstyTV = rootView.findViewById(R.id.desPigstyTV);
+        changeDateTV = rootView.findViewById(R.id.changeDateTV);
+        pigstyChangeLV = rootView.findViewById(R.id.pigstyChangeLV);
+        selLayout = rootView.findViewById(R.id.selLayout);
+
+
+        if (breedingPig!=null){
+            earlabelTV.setText(String.valueOf(breedingPig.getEarlabel()));
+            pigstyTV.setText(String.valueOf(breedingPig.getPigstyName()));
+        }
+        if (commercialPig!=null){
+            earlabelTV.setText(String.valueOf(commercialPig.getEarlabel()));
+            pigstyTV.setText(String.valueOf(commercialPig.getPigstyName()));
+        }
         return  rootView;
     }
 
@@ -81,40 +102,15 @@ public class PigstyChangeFrag extends Fragment implements View.OnClickListener{
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         activity = getActivity();
+        context = getContext();
         init();
     }
 
-    //    public PigstyChangeFrag(Context context, AttributeSet attrs) {
-//        super(context, attrs);
-//        this.context = context;
-//        RelativeLayout.inflate(context, R.layout.pigsty_change_frag,this);
-//        init();
-//    }
-
     private void init(){
 
-        earlabelTV = activity.findViewById(R.id.earlabelTV);
-        pigstyTV = activity.findViewById(R.id.pigstyTV);
-        changeTypeTV = activity.findViewById(R.id.changeTypeTV);
-        desPigstyTV = activity.findViewById(R.id.desPigstyTV);
-        changeDateTV = activity.findViewById(R.id.changeDateTV);
-        pigstyChangeLV = activity.findViewById(R.id.pigstyChangeLV);
-        selLayout = activity.findViewById(R.id.selLayout);
-
-
-        if (breedingPig!=null){
-            earlabelTV.setText(String.valueOf(breedingPig.getEarlabel()));
-            pigstyTV.setText(String.valueOf(breedingPig.getPigstyMessage()));
-        }
-        if (commercialPig!=null){
-            earlabelTV.setText(String.valueOf(commercialPig.getEarlabel()));
-            pigstyTV.setText(String.valueOf(commercialPig.getPigstyName()));
-//            eliminateStageTV.setText(breedingPig.get);
-        }
 
         desPigstyTV.setOnClickListener(this);
         changeDateTV.setOnClickListener(this);
-
 
         setListViewBasedOnChildren(pigstyChangeLV);
         pigstyChangeLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {

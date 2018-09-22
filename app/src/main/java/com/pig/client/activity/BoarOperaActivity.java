@@ -38,7 +38,7 @@ private  ViewPager boarOperaVP;
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        BreedingPig breedingPig = (BreedingPig) bundle.get("BreedingPig");
+//        BreedingPig breedingPig = (BreedingPig) bundle.get("BreedingPig");
 
 
 
@@ -46,9 +46,15 @@ private  ViewPager boarOperaVP;
 
     boarOperaVP  = findViewById(R.id.boarOperaVP);
 
-    breedingFrag = new BreedingFrag(BoarOperaActivity.this,breedingPig);
-    eliminateFrag = new EliminateFrag(BoarOperaActivity.this,breedingPig);
-    pigstyChangeFrag = new PigstyChangeFrag(BoarOperaActivity.this,breedingPig);
+    breedingFrag = new BreedingFrag();
+    breedingFrag.setArguments(bundle);
+
+    eliminateFrag = new EliminateFrag();
+    eliminateFrag.setArguments(bundle);
+
+    pigstyChangeFrag = new PigstyChangeFrag();
+    pigstyChangeFrag.setArguments(bundle);
+
     fragmentList.add(breedingFrag);
     fragmentList.add(eliminateFrag);
     fragmentList.add(pigstyChangeFrag);

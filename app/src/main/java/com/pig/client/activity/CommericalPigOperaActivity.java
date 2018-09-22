@@ -39,12 +39,15 @@ public class CommericalPigOperaActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        CommercialPig commercialPig =  bundle.getParcelable("CommericalPig");
+//        CommercialPig commercialPig =  bundle.getParcelable("CommericalPig");
 
         commercialOperaVP  = findViewById(R.id.commercialOperaVP);
-        eliminateFrag = new EliminateFrag(CommericalPigOperaActivity.this,commercialPig);
-        pigstyChangeFrag = new PigstyChangeFrag(CommericalPigOperaActivity.this,commercialPig);
-        saleFrag = new SaleFrag(CommericalPigOperaActivity.this,commercialPig);
+        eliminateFrag = new EliminateFrag();
+        eliminateFrag.setArguments(bundle);
+        pigstyChangeFrag = new PigstyChangeFrag();
+        pigstyChangeFrag.setArguments(bundle);
+        saleFrag = new SaleFrag();
+        saleFrag.setArguments(bundle);
 
         /**
          *    顺序与bottom  menu 对应

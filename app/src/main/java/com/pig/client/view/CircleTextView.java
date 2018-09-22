@@ -76,26 +76,11 @@ public class CircleTextView extends android.support.v7.widget.AppCompatTextView 
         mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
         //设置画得一个半径，然后比较长和宽，以最大的值来确定长方形的长宽，确定半径
         int r = getMeasuredWidth() > getMeasuredHeight() ? getMeasuredWidth() : getMeasuredHeight();
-        //如果设置的padding不一样绘制出来的是椭圆形。绘制的时候考虑padding
-        //Log.i("边界", "宽度"+getMeasuredWidth()+"高度"+getMeasuredHeight()+"getPaddingLeft()"+getPaddingLeft()+"getPaddingTop"+getPaddingTop()+"getPaddingRight(): "+getPaddingRight()+"getPaddingBottom()"+getPaddingBottom());
-        //当padding都为0的时候，绘制出来的就是RectF限定的区域就是一个正方形
-
-
         rectf.set(getPaddingLeft(),getPaddingTop(),r-getPaddingRight(),r-getPaddingBottom());
         //绘制圆弧
         canvas.drawArc(rectf,0,360,false,mPaint);
 
- /*       *//**
-         * 使用SRC_IN
-         *//*
-        mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
 
-        *//**
-         * 给Canvas加上抗锯齿标志
-         *//*
-        canvas.setDrawFilter(new PaintFlagsDrawFilter(0, Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG));
-
-*/
 
         super.onDraw(canvas);
 //

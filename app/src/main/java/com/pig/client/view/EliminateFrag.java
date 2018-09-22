@@ -41,7 +41,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-@SuppressLint("ValidFragment")
 public class EliminateFrag extends Fragment implements View.OnClickListener{
     private Context context;
     private List<String> eliminateTypeList = new ArrayList();
@@ -65,60 +64,49 @@ public class EliminateFrag extends Fragment implements View.OnClickListener{
     private BreedingPig breedingPig;
     private CommercialPig commercialPig;
 
-    public EliminateFrag(Context context, BreedingPig breedingPig) {
-        this.context = context;
-        this.breedingPig = breedingPig;
-        this.commercialPig=null;
-    }
+//    public EliminateFrag(Context context, BreedingPig breedingPig) {
+//        this.context = context;
+//        this.breedingPig = breedingPig;
+//        this.commercialPig=null;
+//    }
+//
+//    public EliminateFrag(Context context, CommercialPig commercialPig) {
+//        this.context = context;
+//        this.commercialPig = commercialPig;
+//        this.breedingPig = null;
+//
+//    }
+//
+//    public EliminateFrag(Context context) {
+//        this.context = context;
+//    }
 
-    public EliminateFrag(Context context, CommercialPig commercialPig) {
-        this.context = context;
-        this.commercialPig = commercialPig;
-        this.breedingPig = null;
 
-    }
+    public EliminateFrag() {
 
-    public EliminateFrag(Context context) {
-        this.context = context;
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-       View rootView =  inflater.inflate(R.layout.eliminate_frag,container,false);
-       return  rootView;
-    }
+        View rootView =  inflater.inflate(R.layout.eliminate_frag,container,false);
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        activity = getActivity();
-        init();
-    }
-    //    public EliminateFrag(Context context, AttributeSet attrs) {
-//        super(context, attrs);
-//        this.context = context;
-//        RelativeLayout.inflate(context, R.layout.eliminate_frag,this);
-//       init();
-//    }
-    private void init(){
+        Bundle bundle = getArguments();
 
-        earlabelTV = activity.findViewById(R.id.earlabelTV);
-        pigTypeTV = activity.findViewById(R.id.pigTypeTV);
-        pigstyTV = activity.findViewById(R.id.pigstyTV);
-        eliminateStageTV = activity.findViewById(R.id.eliminateStageTV);
-        eliminateTypeTV = activity.findViewById(R.id.eliminateTypeTV);
-        eliminateReasonTV = activity.findViewById(R.id.eliminateReasonTV);
-        numberET = activity.findViewById(R.id.numberET);
-        totalWeightET = activity.findViewById(R.id.totalWeightET);
-        eliminateDateTV = activity.findViewById(R.id.eliminateDateTV);
-        eliminateLV = activity.findViewById(R.id.eliminateLV);
-        selLayout = activity.findViewById(R.id.selLayout);
+        breedingPig = bundle.getParcelable("BreedingPig");
+        commercialPig = bundle.getParcelable("CommericalPig");
+        earlabelTV = rootView.findViewById(R.id.earlabelTV);
+        pigTypeTV = rootView.findViewById(R.id.pigTypeTV);
+        pigstyTV = rootView.findViewById(R.id.pigstyTV);
+        eliminateStageTV = rootView.findViewById(R.id.eliminateStageTV);
+        eliminateTypeTV = rootView.findViewById(R.id.eliminateTypeTV);
+        eliminateReasonTV = rootView.findViewById(R.id.eliminateReasonTV);
+        numberET = rootView.findViewById(R.id.numberET);
+        totalWeightET = rootView.findViewById(R.id.totalWeightET);
+        eliminateDateTV = rootView.findViewById(R.id.eliminateDateTV);
+        eliminateLV = rootView.findViewById(R.id.eliminateLV);
+        selLayout = rootView.findViewById(R.id.selLayout);
 
-
-        eliminateTypeTV.setOnClickListener(this);
-        eliminateReasonTV.setOnClickListener(this);
-        eliminateDateTV.setOnClickListener(this);
 
 
         if (breedingPig!=null){
@@ -134,8 +122,25 @@ public class EliminateFrag extends Fragment implements View.OnClickListener{
 //            eliminateStageTV.setText(breedingPig.get);
         }
 
-        earlabelTV.requestLayout();
+       return  rootView;
+    }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        activity = getActivity();
+        context = getContext();
+        init();
+    }
+
+    private void init(){
+
+
+
+
+        eliminateTypeTV.setOnClickListener(this);
+        eliminateReasonTV.setOnClickListener(this);
+        eliminateDateTV.setOnClickListener(this);
 
         setListViewBasedOnChildren(eliminateLV);
         eliminateLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {

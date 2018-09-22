@@ -63,15 +63,25 @@ public class SaleFrag extends Fragment implements View.OnClickListener{
     public SaleFrag() {
     }
 
-    public SaleFrag(Context context,CommercialPig commercialPig) {
-        this.context = context;
-        this.commercialPig = commercialPig;
-    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+       Bundle bundle  = getArguments();
+       commercialPig = bundle.getParcelable("CommericalPig");
         View rootView = inflater.inflate(R.layout.sale_frag,container,false);
+        earlabelTV = rootView.findViewById(R.id.earlabelTV);
+        pigTypeTV = rootView.findViewById(R.id.pigTypeTV);
+        pigstyTV = rootView.findViewById(R.id.pigstyTV);
+        numberET = rootView.findViewById(R.id.numberET);
+        totalWeightET = rootView.findViewById(R.id.totalWeightET);
+        salesDateTV = rootView.findViewById(R.id.salesDateTV);
+        selLayout = rootView.findViewById(R.id.selLayout);
+
+
+        earlabelTV.setText(commercialPig.getEarlabel());
+        pigstyTV.setText(commercialPig.getPigstyName());
+        pigTypeTV.setText(commercialPig.getPigType());
         return rootView;
     }
 
@@ -79,34 +89,12 @@ public class SaleFrag extends Fragment implements View.OnClickListener{
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         activity = getActivity();
+        context = getContext();
         init();
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        earlabelTV.setText(commercialPig.getEarlabel());
-        pigstyTV.setText(commercialPig.getPigstyName());
-        pigTypeTV.setText(commercialPig.getPigType());
-    }
 
-    //    public SaleFrag(Context context, AttributeSet attrs) {
-//        super(context, attrs);
-//        this.context = context;
-//        RelativeLayout.inflate(context, R.layout.sale_frag,this);
-//        init();
-//    }
     private void init(){
-
-        earlabelTV = activity.findViewById(R.id.earlabelTV);
-        pigTypeTV = activity.findViewById(R.id.pigTypeTV);
-        pigstyTV = activity.findViewById(R.id.pigstyTV);
-        numberET = activity.findViewById(R.id.numberET);
-        totalWeightET = activity.findViewById(R.id.totalWeightET);
-        salesDateTV = activity.findViewById(R.id.salesDateTV);
-        selLayout = activity.findViewById(R.id.selLayout);
-
-
 
         salesDateTV.setOnClickListener(this);
     }

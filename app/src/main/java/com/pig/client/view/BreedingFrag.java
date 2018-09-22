@@ -68,47 +68,40 @@ private Activity activity;
 private BreedingPig breedingPig;
 private Fragment fragment  = this;
 private RelativeLayout breedingLL;
-    public BreedingFrag(Context context, BreedingPig breedingPig) {
-        this.context = context;
-        this.breedingPig = breedingPig;
-    }
 
-    public BreedingFrag(Context context) {
-        this.context = context;
-    }
+
+//    public BreedingFrag(Context context, BreedingPig breedingPig) {
+//        this.context = context;
+//        this.breedingPig = breedingPig;
+//    }
+//
+//    public BreedingFrag(Context context) {
+//        this.context = context;
+//    }
 
     public BreedingFrag() {
+
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        //    加载fragment
         View rootView = inflater.inflate(R.layout.breeding_frag, container, false);
-        return rootView;
-    }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        activity = getActivity();
-        init();
-    }
-
-    private void init(){
-        femaleBreedTV = activity.findViewById(R.id.femaleBreedTV);
-        maleBreedTV = activity.findViewById(R.id.maleBreedTV);
-        pigstyTV = activity.findViewById(R.id.pigstyTV);
-        breederTV = activity.findViewById(R.id.breederTV);
-        breedWayTV = activity.findViewById(R.id.breedWayTV);
-        breedDateTV = activity.findViewById(R.id.breedDateTV);
-        breedingLV = activity.findViewById(R.id.breedingLV);
-        commitBtn  =activity.findViewById(R.id.commitBtn);
-        resetBtn = activity.findViewById(R.id.resetBtn);
-        selLayout = activity.findViewById(R.id.selLayout);
-        addDescribeET = activity.findViewById(R.id.addDescribeET);
-        breedingLL = activity.findViewById(R.id.breedingLL);
+        Bundle bundle = getArguments();
+        breedingPig = bundle.getParcelable("BreedingPig");
+        femaleBreedTV = rootView.findViewById(R.id.femaleBreedTV);
+        maleBreedTV = rootView.findViewById(R.id.maleBreedTV);
+        pigstyTV = rootView.findViewById(R.id.pigstyTV);
+        breederTV = rootView.findViewById(R.id.breederTV);
+        breedWayTV = rootView.findViewById(R.id.breedWayTV);
+        breedDateTV = rootView.findViewById(R.id.breedDateTV);
+        breedingLV = rootView.findViewById(R.id.breedingLV);
+        commitBtn  =rootView.findViewById(R.id.commitBtn);
+        resetBtn = rootView.findViewById(R.id.resetBtn);
+        selLayout = rootView.findViewById(R.id.selLayout);
+        addDescribeET = rootView.findViewById(R.id.addDescribeET);
+        breedingLL = rootView.findViewById(R.id.breedingLL);
         if (breedingPig.getGender()==0){ //母
             femaleBreedTV.setText(String.valueOf(breedingPig.getEarlabel()));
             femaleBreedTV.setFocusable(View.NOT_FOCUSABLE);
@@ -116,6 +109,22 @@ private RelativeLayout breedingLL;
             maleBreedTV.setText(String.valueOf(breedingPig.getEarlabel()));
             maleBreedTV.setFocusable(View.NOT_FOCUSABLE);
         }
+
+        //    加载fragment
+        return rootView;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        activity = getActivity();
+        context = getContext();
+//        Bundle bundle = getArguments();
+//        breedingPig =  savedInstanceState.getParcelable("BreedingPig");
+        init();
+    }
+
+    private void init(){
 
 
 //  猪舍
