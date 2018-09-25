@@ -30,18 +30,23 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.pig.client.R;
 import com.pig.client.activity.BoarAddActivity;
 import com.pig.client.pojo.Breeder;
 import com.pig.client.pojo.BreedingPig;
 import com.pig.client.pojo.Pigsty;
+import com.pig.client.pojo.SwineBreeding;
+import com.pig.client.util.DateUtil;
 import com.pig.client.util.PigHttpUtil;
 import com.pig.client.util.PigResult;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BreedingFrag extends Fragment implements View.OnClickListener{
 private Context context;
@@ -52,6 +57,7 @@ private List<String> pigstyNameList = new ArrayList<>();
 private List<String> breedWayList = new ArrayList();
 private List<Breeder> breederList = new ArrayList<>();
 private List<String>breederNameList = new ArrayList<>();
+private List<BreedingPig> breedingPigList = new ArrayList<>();
 private int selectList ;
 private EditText femaleBreedTV;
 private EditText maleBreedTV;
@@ -105,6 +111,18 @@ private RelativeLayout breedingLL;
         if (breedingPig.getGender()==0){ //母
             femaleBreedTV.setText(String.valueOf(breedingPig.getEarlabel()));
             femaleBreedTV.setFocusable(View.NOT_FOCUSABLE);
+//            Map params = new HashMap();
+//            params.put("gender","1");
+//            PigHttpUtil.queryBreedByGender(params, new PigHttpUtil.PigListCallBack(PigHttpUtil.BREED_LIST_TYPE) {
+//                @Override
+//                public void analyticData(final PigResult.PigList pigList) {
+//                    List list =  pigList.getData();
+//                    breedingPigList.addAll(list);
+//                    for (BreedingPig b:breedingPigList){
+//                        earlabelList.add(b.getEarlabel());
+//                    }
+//                }
+//            });
         }else if (breedingPig.getGender()==1){//公
             maleBreedTV.setText(String.valueOf(breedingPig.getEarlabel()));
             maleBreedTV.setFocusable(View.NOT_FOCUSABLE);
@@ -128,9 +146,7 @@ private RelativeLayout breedingLL;
 
 
 //  猪舍
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+
                 PigHttpUtil.queryAllPigsty(new PigHttpUtil.PigListCallBack(PigHttpUtil.PIGSTY_LIST_TYPE) {
                     @Override
                     public void analyticData(final PigResult.PigList pigList) {
@@ -146,12 +162,9 @@ private RelativeLayout breedingLL;
                         });
                     }
                 });
-            }
-        }).start();
+
 // 配种员
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
+
                 PigHttpUtil.queryAllBreeder(new PigHttpUtil.PigListCallBack(PigHttpUtil.BREEDER_LIST_TYPE) {
                     @Override
                     public void analyticData(final PigResult.PigList pigList) {
@@ -167,8 +180,6 @@ private RelativeLayout breedingLL;
                         });
                     }
                 });
-            }
-        }).start();
 
 
 
@@ -240,9 +251,9 @@ private RelativeLayout breedingLL;
 
 
 
-        earlabelList.add("AAA");
-        earlabelList.add("AAA");
-        earlabelList.add("AAA");
+//        earlabelList.add("AAA");
+//        earlabelList.add("AAA");
+//        earlabelList.add("AAA");
 
 //        pigstyList.add("BBB");
 //        pigstyList.add("BBB");
@@ -255,8 +266,41 @@ private RelativeLayout breedingLL;
 //        breederList.add("DDD");
 //        breederList.add("DDD");
 //        breederList.add("DDD");
+        /**
+         *
+         *   提交
+         * @param
+         */
+        commitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SwineBreeding swineBreeding = new SwineBreeding();
+                swineBreeding.setBreeder(getBreeder());
+                swineBreeding.setBreederDate(getBreederDate());
+                swineBreeding.setBreederWay(getBreederWay());
+                swineBreeding.setEarlabelFemale(getEarlabelFemale());
+                swineBreeding.setEarlabelMale(getEarlabelFemale());
+                swineBreeding.setPigId(getPigId());
+                swineBreeding.setPigstyMessage(getPigstyMessage());
+                swineBreeding.setRemark(getRemark());
+                PigHttpUtil.commitSwineBreeding(swineBreeding, new PigHttpUtil.PigObjCallBack(PigHttpUtil.STRING_TYPE) {
+                    @Override
+                    public void analyticData(PigResult.PigObj pigObj) {
+                        activity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(context,"添加成功",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
+            }
+        });
+
+
 
     }
+
 
     @Override
     public void onClick(View v) {
@@ -349,4 +393,42 @@ private RelativeLayout breedingLL;
         params.width = maxWidth;
         listView.setLayoutParams(params);
     }
+
+
+   public int getPigId(){
+        return  breedingPig.getId();
+   }
+   public  String getEarlabelFemale(){
+        return  femaleBreedTV.getText().toString();
+   }
+   public String getEarlabelMale(){
+        return  maleBreedTV.getText().toString();
+   }
+   public  int getPigstyMessage(){
+        for (Pigsty p: pigstyList){
+            if (p.getName().equals(pigstyTV.getText().toString())){
+                return p.getId();
+            }
+        }
+        return  0;
+   }
+   public  int getBreeder(){
+        for (Breeder b:breederList){
+            if (b.getName().equals(breederTV.getText().toString())){
+                return b.getId();
+            }
+        }
+        return  0;
+   }
+   public  String getBreederWay(){
+        return  breedWayTV.getText().toString();
+   }
+   public  long getBreederDate(){
+        return DateUtil.stringToLong(breedDateTV.getText().toString());
+   }
+
+  public  String getRemark(){
+        return  addDescribeET.getText().toString();
+  }
+
 }

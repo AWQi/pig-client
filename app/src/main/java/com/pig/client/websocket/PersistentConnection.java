@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 
@@ -107,6 +108,18 @@ public class PersistentConnection{
                                 b1.putString("date",message.getMsg());
                                 m2.setData(b1);
                                 handler.sendMessage(m2);
+
+                            }
+                            else {
+                                if (NotificationUtil.getNotification()==null) {
+                                    ZigbeeDate zigbeeDate = JsonUtil.StrToObj(message.getMsg(), ZigbeeDate.class);
+                                    if (zigbeeDate.type.equals("01") && (zigbeeDate.df < 5 || zigbeeDate.df > 40)) {//温度
+                                        NotificationUtil.sendNotification(ApplicationUtil.getContext());
+                                    } else if (zigbeeDate.type.equals("02") && (zigbeeDate.df > 65 || zigbeeDate.df < 40)) {// 湿度
+                                        NotificationUtil.sendNotification(ApplicationUtil.getContext());
+
+                                    }
+                                }
                             }
                             break;
                     }

@@ -112,8 +112,8 @@ private  ViewPager boarOperaVP;
                     boarOperaVP.setCurrentItem(2);
 
                     break;
-                case R.id.boare:
-                    break;
+//                case R.id.boare:
+//                    break;
                 default:break;
             }
             return true;// return false  事务拦截没有动画效果

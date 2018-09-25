@@ -31,10 +31,15 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.pig.client.R;
 import com.pig.client.activity.BoarAddActivity;
 import com.pig.client.pojo.CommercialPig;
+import com.pig.client.pojo.Sale;
+import com.pig.client.util.DateUtil;
+import com.pig.client.util.PigHttpUtil;
+import com.pig.client.util.PigResult;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -51,6 +56,7 @@ public class SaleFrag extends Fragment implements View.OnClickListener{
     private EditText  numberET;
     private EditText totalWeightET;
     private EditText customerNameET;
+    private EditText customerAddrET;
     private  EditText customerTelET;
     private TextView salesDateTV;
 
@@ -75,9 +81,15 @@ public class SaleFrag extends Fragment implements View.OnClickListener{
         pigstyTV = rootView.findViewById(R.id.pigstyTV);
         numberET = rootView.findViewById(R.id.numberET);
         totalWeightET = rootView.findViewById(R.id.totalWeightET);
+        unitPriceET = rootView.findViewById(R.id.unitPriceET);
         salesDateTV = rootView.findViewById(R.id.salesDateTV);
         selLayout = rootView.findViewById(R.id.selLayout);
 
+        customerNameET = rootView.findViewById(R.id.customerNameET);
+        customerAddrET = rootView.findViewById(R.id.customerAddrET);
+        customerTelET = rootView.findViewById(R.id.customerTelET);
+
+        commitBtn = rootView.findViewById(R.id.commitBtn);
 
         earlabelTV.setText(commercialPig.getEarlabel());
         pigstyTV.setText(commercialPig.getPigstyName());
@@ -97,6 +109,38 @@ public class SaleFrag extends Fragment implements View.OnClickListener{
     private void init(){
 
         salesDateTV.setOnClickListener(this);
+        commitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Sale sale = new Sale();
+                    sale.setCustomerAddress(getCustomerAddr());
+                    sale.setCustomerName(getCustomerName());
+                    sale.setCustomerTel(getCustomTel());
+                    sale.setEarlabel(getEarlabel());
+                    sale.setNumber(getNumber());
+                    sale.setPigstyMessage(getPigsty());
+                    sale.setPigType(getPigType());
+                    sale.setSalesDate(getSalesDate());
+                    sale.setTotalWeight((float) getTotalWeight());
+                    sale.setUnitPrice((float) getUnitPrice());
+                    PigHttpUtil.commitSale(sale, new PigHttpUtil.PigObjCallBack(PigHttpUtil.STRING_TYPE) {
+                        @Override
+                        public void analyticData(PigResult.PigObj pigObj) {
+                            activity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(context,"添加订单成功",Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(context,"数据错误,请重新输入",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override
@@ -152,4 +196,35 @@ public class SaleFrag extends Fragment implements View.OnClickListener{
         params.width = maxWidth;
         listView.setLayoutParams(params);
     }
+     public   int getEarlabel(){
+          return   commercialPig.getBatchNumber();
+        }
+     public  int getPigsty(){
+        return  commercialPig.getPigstyMessage();
+     }
+     public  String getPigType(){
+        return  commercialPig.getPigType();
+     }
+     public  int getUnitPrice(){
+        return  Integer.parseInt(unitPriceET.getText().toString());
+     }
+     public  int getNumber(){
+        return  Integer.parseInt(numberET.getText().toString());
+     }
+    public  int getTotalWeight(){
+        return  Integer.parseInt(totalWeightET.getText().toString());
+    }
+    public  String getCustomerName(){
+        return  customerNameET.getText().toString();
+    }
+    public  String getCustomerAddr(){
+        return  customerAddrET.getText().toString();
+    }
+    public  String getCustomTel(){
+        return  customerTelET.getText().toString();
+    }
+    public  long getSalesDate(){
+        return DateUtil.stringToLong(salesDateTV.getText().toString());
+    }
+
 }

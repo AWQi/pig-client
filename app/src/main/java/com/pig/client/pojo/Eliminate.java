@@ -5,7 +5,7 @@ public class Eliminate {
 
     private Integer earlabel;
 
-    private String pigstyMessage;
+    private Integer pigstyMessage;
 
     private String pigType;
 
@@ -37,12 +37,12 @@ public class Eliminate {
         this.earlabel = earlabel;
     }
 
-    public String getPigstyMessage() {
+    public Integer getPigstyMessage() {
         return pigstyMessage;
     }
 
-    public void setPigstyMessage(String pigstyMessage) {
-        this.pigstyMessage = pigstyMessage == null ? null : pigstyMessage.trim();
+    public void setPigstyMessage(Integer pigstyMessage) {
+        this.pigstyMessage = pigstyMessage;
     }
 
     public String getPigType() {

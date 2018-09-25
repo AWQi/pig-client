@@ -118,6 +118,7 @@ private CircleTextView breeding;
                                            list.get(i).setHumidity(zigbeeDate.df);
                                            pigstyRV.getAdapter().notifyItemChanged(i);
                                        }
+
                                    }
                                }
                            }

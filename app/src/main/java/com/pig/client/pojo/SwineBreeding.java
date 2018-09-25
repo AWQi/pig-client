@@ -3,19 +3,29 @@ package com.pig.client.pojo;
 public class SwineBreeding {
     private Integer id;
 
-    private Integer earlabelFemale;
+    private  int pigId;
+    private String earlabelFemale;
 
-    private Integer earlabelMale;
+    private String earlabelMale;
 
-    private String pigstyMessage;
+    private int pigstyMessage;
 
-    private String breeder;
+    private int breeder;
 
     private String breederWay;
 
     private Long breederDate;
 
     private String remark;
+    private  int gender;
+
+    public int getGender() {
+        return gender;
+    }
+
+    public void setGender(int gender) {
+        this.gender = gender;
+    }
 
     public Integer getId() {
         return id;
@@ -25,36 +35,44 @@ public class SwineBreeding {
         this.id = id;
     }
 
-    public Integer getEarlabelFemale() {
-        return earlabelFemale;
+    public void setPigId(int pigId) {
+        this.pigId = pigId;
     }
 
-    public void setEarlabelFemale(Integer earlabelFemale) {
+    public void setEarlabelFemale(String earlabelFemale) {
         this.earlabelFemale = earlabelFemale;
     }
 
-    public Integer getEarlabelMale() {
-        return earlabelMale;
-    }
-
-    public void setEarlabelMale(Integer earlabelMale) {
+    public void setEarlabelMale(String earlabelMale) {
         this.earlabelMale = earlabelMale;
     }
 
-    public String getPigstyMessage() {
+    public int getPigId() {
+        return pigId;
+    }
+
+    public String getEarlabelFemale() {
+        return earlabelFemale;
+    }
+
+    public String getEarlabelMale() {
+        return earlabelMale;
+    }
+
+    public int getPigstyMessage() {
         return pigstyMessage;
     }
 
-    public void setPigstyMessage(String pigstyMessage) {
-        this.pigstyMessage = pigstyMessage == null ? null : pigstyMessage.trim();
+    public void setPigstyMessage(int pigstyMessage) {
+        this.pigstyMessage = pigstyMessage;
     }
 
-    public String getBreeder() {
+    public int getBreeder() {
         return breeder;
     }
 
-    public void setBreeder(String breeder) {
-        this.breeder = breeder == null ? null : breeder.trim();
+    public void setBreeder(int breeder) {
+        this.breeder = breeder;
     }
 
     public String getBreederWay() {

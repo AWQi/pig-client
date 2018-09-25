@@ -10,8 +10,13 @@ import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.pig.client.pojo.Breeder;
 import com.pig.client.pojo.BreedingPig;
+import com.pig.client.pojo.ChangePigstyBreed;
+import com.pig.client.pojo.ChangePigstyCommercial;
 import com.pig.client.pojo.CommercialPig;
+import com.pig.client.pojo.Eliminate;
 import com.pig.client.pojo.Pigsty;
+import com.pig.client.pojo.Sale;
+import com.pig.client.pojo.SwineBreeding;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -43,6 +48,20 @@ public class PigHttpUtil {
 
 
 
+    static  final private  String BREED_PIG_QUERY_BY_GENDER=  "http://"+HOST+"/BreedingPig/queryByGender";
+    static public  void  queryBreedByGender(Map params,PigHttpCallBack pigHttpCallBack){
+        pigPostHttp(BREED_PIG_QUERY_BY_GENDER,null,null,params,pigHttpCallBack);
+    }
+
+    static  final private  String COMMIT_SWINE_BREEDING=  "http://"+HOST+"/BreedingPig/commitSwineBreeding";
+    static public  void  commitSwineBreeding(SwineBreeding swineBreeding, PigHttpCallBack pigHttpCallBack){
+        pigPostHttp(COMMIT_SWINE_BREEDING,JsonUtil.ObjToStr(swineBreeding),null,null,pigHttpCallBack);
+    }
+
+    static  final private  String COMMIT_SALE=  "http://"+HOST+"/CommecialPig/commitSale";
+    static public  void  commitSale(Sale sale, PigHttpCallBack pigHttpCallBack){
+        pigPostHttp(COMMIT_SALE,JsonUtil.ObjToStr(sale),null,null,pigHttpCallBack);
+    }
 
 
     static  public final Type BREED_LIST_TYPE = new TypeToken<PigResult.PigList<BreedingPig>>() {}.getType();
@@ -72,6 +91,21 @@ public class PigHttpUtil {
     static  final private  String  ADD_BREEDING  = "http://"+HOST+"/BreedingPig/add";
     static public void  addBreeding(BreedingPig breedingPig,PigHttpCallBack pigHttpCallBack){
         pigPostHttp(ADD_BREEDING,JsonUtil.ObjToStr(breedingPig),null,null,pigHttpCallBack);
+    }
+
+    static  final private  String  EXCHANGE_PIGSTY_BREEDING = "http://"+HOST+"/BreedingPig/exchangePigsty";
+    static public void  exchangePigstyBreeding(ChangePigstyBreed changePigstyBreed, PigHttpCallBack pigHttpCallBack){
+        pigPostHttp(EXCHANGE_PIGSTY_BREEDING,JsonUtil.ObjToStr(changePigstyBreed),null,null,pigHttpCallBack);
+    }
+    static  final private  String  EXCHANGE_PIGSTY_COMMERCIAL = "http://"+HOST+"/CommecialPig/exchangePigsty";
+    static public void  exchangePigstyCommercial(ChangePigstyCommercial changePigstyCommercial, PigHttpCallBack pigHttpCallBack){
+        pigPostHttp(EXCHANGE_PIGSTY_COMMERCIAL,JsonUtil.ObjToStr(changePigstyCommercial),null,null,pigHttpCallBack);
+    }
+
+
+    static  final private  String  ADD_ELIMINATE = "http://"+HOST+"/Eliminate/add";
+    static public void  commitEliminate(Eliminate eliminate, PigHttpCallBack pigHttpCallBack){
+        pigPostHttp(ADD_ELIMINATE,JsonUtil.ObjToStr(eliminate),null,null,pigHttpCallBack);
     }
 
 //    static Handler handler = new Handler(){

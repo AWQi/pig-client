@@ -31,11 +31,17 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.pig.client.R;
 import com.pig.client.activity.BoarAddActivity;
 import com.pig.client.pojo.BreedingPig;
 import com.pig.client.pojo.CommercialPig;
+import com.pig.client.pojo.Eliminate;
+import com.pig.client.pojo.Pigsty;
+import com.pig.client.util.DateUtil;
+import com.pig.client.util.PigHttpUtil;
+import com.pig.client.util.PigResult;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -106,6 +112,7 @@ public class EliminateFrag extends Fragment implements View.OnClickListener{
         eliminateDateTV = rootView.findViewById(R.id.eliminateDateTV);
         eliminateLV = rootView.findViewById(R.id.eliminateLV);
         selLayout = rootView.findViewById(R.id.selLayout);
+        commitBtn = rootView.findViewById(R.id.commitBtn);
 
 
 
@@ -134,10 +141,32 @@ public class EliminateFrag extends Fragment implements View.OnClickListener{
     }
 
     private void init(){
-
-
-
-
+        commitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Eliminate eliminate = new Eliminate();
+                eliminate.setEarlabel(getEarlabel());
+                eliminate.setEliminateDate(getEliminateDate());
+                eliminate.setEliminateReason(eliminateReasonTV.getText().toString());
+                eliminate.setEliminateStage(eliminateStageTV.getText().toString());
+                eliminate.setNumber(Integer.parseInt(numberET.getText().toString()));
+                eliminate.setEliminateType(eliminateTypeTV.getText().toString());
+                eliminate.setPigstyMessage(getEliminatePigsty());
+                eliminate.setPigType(getPigType());
+                eliminate.setTotalWeight(Float.parseFloat(totalWeightET.getText().toString()));
+                PigHttpUtil.commitEliminate(eliminate, new PigHttpUtil.PigObjCallBack(PigHttpUtil.STRING_TYPE) {
+                    @Override
+                    public void analyticData(PigResult.PigObj pigObj) {
+                        activity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(context,"死淘成功",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
+            }
+        });
         eliminateTypeTV.setOnClickListener(this);
         eliminateReasonTV.setOnClickListener(this);
         eliminateDateTV.setOnClickListener(this);
@@ -244,5 +273,35 @@ public class EliminateFrag extends Fragment implements View.OnClickListener{
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
         params.width = maxWidth;
         listView.setLayoutParams(params);
+    }
+    public  int getEarlabel(){
+            if (breedingPig!=null){
+                return  breedingPig.getId();
+            }
+            if (commercialPig!=null){
+                return  commercialPig.getBatchNumber();
+            }
+            return  0;
+    }
+    public  long getEliminateDate(){
+        return DateUtil.stringToLong(eliminateDateTV.getText().toString());
+    }
+   public int getEliminatePigsty(){
+       if (breedingPig!=null){
+           return  breedingPig.getPigstyMessage();
+       }
+       if (commercialPig!=null){
+           return  commercialPig.getPigstyMessage();
+       }
+       return  0;
+    }
+    public String getPigType(){
+        if (breedingPig!=null){
+            return  breedingPig.getPigType();
+        }
+        if (commercialPig!=null){
+            return  commercialPig.getPigType();
+        }
+        return  null;
     }
 }

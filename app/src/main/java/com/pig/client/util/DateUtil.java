@@ -46,12 +46,13 @@ public  static  Date longToDate(long l){
         Date date   = null;
         try {
             date = formatter.parse(s);
+            return  date.getTime();
+
         } catch (ParseException e) {
             e.printStackTrace();
             Log.d(TAG, "DateStringToDate: "+e.getMessage());
         }
-        return  date.getTime();
-
+        return  0;
     }
 
 }

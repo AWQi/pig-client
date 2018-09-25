@@ -3,7 +3,7 @@ package com.pig.client.pojo;
 public class Sale {
     private Integer id;
 
-    private String pigstyMessage;
+    private Integer pigstyMessage;
 
     private Integer earlabel;
 
@@ -31,12 +31,12 @@ public class Sale {
         this.id = id;
     }
 
-    public String getPigstyMessage() {
+    public Integer getPigstyMessage() {
         return pigstyMessage;
     }
 
-    public void setPigstyMessage(String pigstyMessage) {
-        this.pigstyMessage = pigstyMessage == null ? null : pigstyMessage.trim();
+    public void setPigstyMessage(Integer pigstyMessage) {
+        this.pigstyMessage = pigstyMessage;
     }
 
     public Integer getEarlabel() {

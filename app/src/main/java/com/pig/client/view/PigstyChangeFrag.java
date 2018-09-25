@@ -23,11 +23,15 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.pig.client.R;
 import com.pig.client.pojo.BreedingPig;
+import com.pig.client.pojo.ChangePigstyBreed;
+import com.pig.client.pojo.ChangePigstyCommercial;
 import com.pig.client.pojo.CommercialPig;
 import com.pig.client.pojo.Pigsty;
+import com.pig.client.util.DateUtil;
 import com.pig.client.util.PigHttpUtil;
 import com.pig.client.util.PigResult;
 
@@ -85,15 +89,18 @@ public class PigstyChangeFrag extends Fragment implements View.OnClickListener{
         changeDateTV = rootView.findViewById(R.id.changeDateTV);
         pigstyChangeLV = rootView.findViewById(R.id.pigstyChangeLV);
         selLayout = rootView.findViewById(R.id.selLayout);
+        commitBtn = rootView.findViewById(R.id.commitBtn);
 
 
         if (breedingPig!=null){
             earlabelTV.setText(String.valueOf(breedingPig.getEarlabel()));
             pigstyTV.setText(String.valueOf(breedingPig.getPigstyName()));
+            changeTypeTV.setText("个体");
         }
         if (commercialPig!=null){
             earlabelTV.setText(String.valueOf(commercialPig.getEarlabel()));
             pigstyTV.setText(String.valueOf(commercialPig.getPigstyName()));
+            changeTypeTV.setText("群体");
         }
         return  rootView;
     }
@@ -107,7 +114,47 @@ public class PigstyChangeFrag extends Fragment implements View.OnClickListener{
     }
 
     private void init(){
-
+        commitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (breedingPig!=null){
+                    ChangePigstyBreed changePigstyBreed = new ChangePigstyBreed();
+                    changePigstyBreed.setEarlabel(breedingPig.getId());
+                    changePigstyBreed.setOutPigsty(breedingPig.getPigstyMessage());
+                    changePigstyBreed.setInPigsty(getInPigsty());
+                    changePigstyBreed.setTurngroupDate(getChangeDate());
+                    PigHttpUtil.exchangePigstyBreeding(changePigstyBreed, new PigHttpUtil.PigObjCallBack(PigHttpUtil.STRING_TYPE) {
+                        @Override
+                        public void analyticData(PigResult.PigObj pigObj) {
+                            activity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(context,"转舍成功",Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    });
+                }
+                if (commercialPig!=null){
+                    ChangePigstyCommercial changePigstyCommercial = new ChangePigstyCommercial();
+                    changePigstyCommercial.setBatchNumber(commercialPig.getBatchNumber());
+                    changePigstyCommercial.setDate(getChangeDate());
+                    changePigstyCommercial.setInPigsty(getInPigsty());
+                    changePigstyCommercial.setOutPigsty(commercialPig.getPigstyMessage());
+                    PigHttpUtil.exchangePigstyCommercial(changePigstyCommercial, new PigHttpUtil.PigObjCallBack(PigHttpUtil.STRING_TYPE) {
+                        @Override
+                        public void analyticData(PigResult.PigObj pigObj) {
+                            activity.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(context,"转舍成功",Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    });
+                }
+            }
+        });
 
         desPigstyTV.setOnClickListener(this);
         changeDateTV.setOnClickListener(this);
@@ -212,5 +259,16 @@ public class PigstyChangeFrag extends Fragment implements View.OnClickListener{
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
         params.width = maxWidth;
         listView.setLayoutParams(params);
+    }
+    public int   getInPigsty(){
+        for (Pigsty p : pigstyList){
+            if (p.getName().equals(desPigstyTV.getText().toString())){
+                return p.getId();
+            }
+        }
+        return  0;
+    }
+    public  long getChangeDate(){
+        return  DateUtil.stringToLong(changeDateTV.getText().toString());
     }
 }

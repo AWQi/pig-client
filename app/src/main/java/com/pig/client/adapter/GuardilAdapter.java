@@ -2,6 +2,11 @@ package com.pig.client.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.media.SoundPool;
+import android.net.Uri;
+import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -17,6 +22,7 @@ import android.widget.TextView;
 import com.pig.client.R;
 import com.pig.client.pojo.Pigsty;
 import com.pig.client.util.AnimationUtil;
+import com.pig.client.util.NotificationUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,8 +96,13 @@ public class GuardilAdapter extends RecyclerView.Adapter{
 
                 }
             });
-            if (pigsty.getTemperature()<5||pigsty.getTemperature()>40){
+            if (pigsty.getTemperature()<5||pigsty.getTemperature()>40||pigsty.getHumidity()>65){
                 holder.warningIV.setVisibility(View.VISIBLE);
+                //震动
+                Vibrator vibrator = (Vibrator)context.getSystemService(context.VIBRATOR_SERVICE);
+                vibrator.vibrate(1000);
+                //响铃
+                NotificationUtil.startAlarm(context);
             }else {
                 holder.warningIV.setVisibility(View.INVISIBLE);
             }
@@ -124,4 +135,8 @@ public class GuardilAdapter extends RecyclerView.Adapter{
             warningIV = itemView.findViewById(R.id.warningIV);
         }
     }
+
+
+
+
 }
