@@ -161,7 +161,7 @@ public class BoarActivity extends AppCompatActivity {
             }
         });
         boarRV = findViewById(R.id.boarRV);
-        queryAllBoarding();
+
 
         PersistentConnection.handler =  new Handler(){
             @Override
@@ -189,6 +189,12 @@ public class BoarActivity extends AppCompatActivity {
         };
 
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        queryAllBoarding();
     }
 
     public  void  queryAllBoarding(){

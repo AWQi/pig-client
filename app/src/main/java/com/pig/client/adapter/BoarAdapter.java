@@ -52,7 +52,7 @@ public class BoarAdapter extends RecyclerView.Adapter {
             BreedingPig breedingPig = list.get(i);
             holder.earlabelTV.setText(String.valueOf(breedingPig.getEarlabel()));
             holder.typeTV.setText(breedingPig.getPigType());
-            holder.pigstyTV.setText(String.valueOf(breedingPig.getPigstyMessage()));
+            holder.pigstyTV.setText(String.valueOf(breedingPig.getPigstyName()));
 
             holder.birthdayTV.setText(DateUtil.longToString(breedingPig.getBirthdate()));
             holder.varietyTV.setText(breedingPig.getPigVariety());

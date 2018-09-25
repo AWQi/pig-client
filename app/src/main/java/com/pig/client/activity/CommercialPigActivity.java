@@ -32,22 +32,28 @@ private Activity activity = this;
 
         commercialPigRV = findViewById(R.id.commercialPigRV);
 
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         new Thread(new Runnable() {
             @Override
             public void run() {
                 PigHttpUtil.queryAllCommerical(new PigHttpUtil.PigListCallBack(PigHttpUtil.COMMERICAL_LIST_TYPE) {
                     @Override
                     public void analyticData(PigResult.PigList pigList) {
-                       final List list =  pigList.getData();
-                       activity.runOnUiThread(new Runnable() {
-                           @Override
-                           public void run() {
-                               LinearLayoutManager layoutManager  = new LinearLayoutManager(CommercialPigActivity.this);
-                               commercialPigRV.setLayoutManager(layoutManager);
-                               commercialPigRV.setAdapter(new CommericalPigAdapter(CommercialPigActivity.this,list));
-                               commercialPigRV.addItemDecoration(new DividerItemDecoration(CommercialPigActivity.this,DividerItemDecoration.VERTICAL));
-                           }
-                       });
+                        final List list =  pigList.getData();
+                        activity.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                LinearLayoutManager layoutManager  = new LinearLayoutManager(CommercialPigActivity.this);
+                                commercialPigRV.setLayoutManager(layoutManager);
+                                commercialPigRV.setAdapter(new CommericalPigAdapter(CommercialPigActivity.this,list));
+                                commercialPigRV.addItemDecoration(new DividerItemDecoration(CommercialPigActivity.this,DividerItemDecoration.VERTICAL));
+                            }
+                        });
 
                     }
                 });
