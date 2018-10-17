@@ -1,5 +1,4 @@
 # pig-client
-pig
 ============
 
     一个小型养猪管理系统。
@@ -7,14 +6,21 @@ pig
 !【相关博客主页】(https://www.cnblogs.com/the-wang/)
 ------
 服务器    ：  Tomcat
+
 数据库    ：  MySQL
+
 后端      ：  Spring、SpringMVC、Mybatis、Jackson、WebsScket
+
 Android   ：  OkHttp、WebSocket、Gson
+
 开发模式  ：  C/S
+
 开发语言  ：  Java、Xml、SQL、Json
+
 开发工具  ：  Android_Studio 3.1.4、
               Eclipse Jee Photon、
               SQLyog
+              
 开发系统环境：Windows10、jdk1.8、SDK28
  
 主要功能：
