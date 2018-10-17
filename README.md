@@ -1,7 +1,7 @@
 # pig-client
 ============
 
-    一个小型养猪管理系统。
+    一个小型养猪管理系统，。
 ============
 【相关博客主页】(https://www.cnblogs.com/the-wang/)
 ------
@@ -12,6 +12,8 @@
 后端      ：  Spring、SpringMVC、Mybatis、Jackson、WebsScket
 
 Android   ：  OkHttp、WebSocket、Gson
+
+硬件      ：  物联网实验箱、光照传感器、温湿度传感器、继电器、RFID模块
 
 开发模式  ：  C/S
 
