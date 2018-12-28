@@ -57,7 +57,7 @@ Android   ：  OkHttp、WebSocket、Gson
     （3）调猪温度、光照、喂食，做到猪舍的实时调控。
   
   
-部分截图    （更多查看ScreenShots文件夹）
+部分截图    （更多查看<a href="https://github.com/AWQi/pig-client/tree/master/screenshot">ScreenShots</a>文件夹）
 ========
 <img src="https://github.com/AWQi/pig-client/raw/master/screenshot/a.png" width= "175" height="275"/>
 <img src="https://github.com/AWQi/pig-client/raw/master/screenshot/b.png" width= "175" height="275"/>
