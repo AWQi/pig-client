@@ -65,9 +65,3 @@ Android   ：  OkHttp、WebSocket、Gson
 <img src="https://github.com/AWQi/pig-client/raw/master/screenshot/d.png" width= "175" height="275"/>
 <img src="https://github.com/AWQi/pig-client/raw/master/screenshot/e.png" width= "175" height="275"/>
 
-
-![](https://github.com/AWQi/pig-client/raw/master/screenshot/a.png)
-![](https://github.com/AWQi/pig-client/raw/master/screenshot/b.png)
-![](https://github.com/AWQi/pig-client/raw/master/screenshot/c.png)
-![](https://github.com/AWQi/pig-client/raw/master/screenshot/d.png)
-  
