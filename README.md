@@ -59,4 +59,8 @@ Android   ：  OkHttp、WebSocket、Gson
   
 部分截图    （更多查看ScreenShots文件夹）
 ========
+![](https://github.com/AWQi/pig-client/blob/master/screenshot/a.png)
+![](https://github.com/AWQi/pig-client/blob/master/screenshot/b.png)
+![](https://github.com/AWQi/pig-client/blob/master/screenshot/c.png)
+![](https://github.com/AWQi/pig-client/blob/master/screenshot/d.png)
   
